@@ -1,0 +1,47 @@
+Table Products{
+  id bigint [primary key]
+  name varchar(60)
+  price double
+  in_stock boolean
+  url_image string
+  id_category bigint
+  create_at timestamp
+  update_at timestamp
+}
+
+Table Product_Descriptions{
+  description varchar(500)
+  specifications varchar(2000)
+  image_one varchar(3200)
+  image_two varcahr(3200)
+  image_three varchar(3000)
+  id_product bigint
+}
+
+Table Categories{
+  id bigint [primary key]
+  name varchar(60) [unique]
+  url_image string
+}
+
+Table Carritos{
+  total ingeger
+  id_product bigint
+  id_user bigint
+  update_at timestamp
+}
+
+Table User{
+  id bitint [primary key]
+  email varchar(80)
+  name varchar(60)
+  password varchar
+  enable boolean
+}
+
+Ref: Products.id_category> Categories.id
+Ref: User.id > Carritos.id_user
+Ref: Products.id > Carritos.id_product
+Ref: Products.id - Product_Descriptions.id_product
+
+//https://dbdiagram.io/home
