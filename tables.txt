@@ -16,6 +16,7 @@ Table Product_Descriptions{
   image_two varcahr(3200)
   image_three varchar(3000)
   id_product bigint
+  update_at timestamp
 }
 
 Table Categories{
@@ -32,16 +33,29 @@ Table Carritos{
 }
 
 Table User{
-  id bitint [primary key]
-  email varchar(80)
+  id bigint [primary key]
+  email varchar(80) [unique]
   name varchar(60)
   password varchar
   enable boolean
+}
+
+Table user_role{
+  id_user bigint
+  id_roles bigint
+}
+
+Table Roles{
+  id bigint [primary key]
+  name varchar(80)
 }
 
 Ref: Products.id_category> Categories.id
 Ref: User.id > Carritos.id_user
 Ref: Products.id > Carritos.id_product
 Ref: Products.id - Product_Descriptions.id_product
+Ref: User.id <> user_role.id_user
+Ref: Roles.id <> user_role.id_roles
+
 
 //https://dbdiagram.io/home
