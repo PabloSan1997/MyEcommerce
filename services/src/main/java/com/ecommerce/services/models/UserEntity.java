@@ -1,16 +1,18 @@
 package com.ecommerce.services.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "users")
@@ -23,6 +25,7 @@ public class UserEntity {
     @Column(length = 50, nullable = false)
     private String name;
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     @Column(nullable = false)
     private Boolean enable;
@@ -31,6 +34,19 @@ public class UserEntity {
     @Column(name="update_at")
     private Date updateAt;
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_role"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"id_user", "id_role"})}
+    )
+    private List<RoleEntity> roles;
+
+    public UserEntity(){
+        roles = new ArrayList<>();
+    }
     @PrePersist
     public void prePersist(){
         createAt = new Date();
@@ -41,5 +57,12 @@ public class UserEntity {
     @PreUpdate
     public void preUpdate(){
         updateAt = new Date();
+    }
+
+    public void addRole(RoleEntity roleEntity){
+        if(roles == null){
+            roles = new ArrayList<>();
+        }
+        roles.add(roleEntity);
     }
 }

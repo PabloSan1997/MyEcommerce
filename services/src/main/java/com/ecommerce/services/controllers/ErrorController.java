@@ -1,5 +1,6 @@
 package com.ecommerce.services.controllers;
 
+import com.ecommerce.services.exceptions.MyBadImplementationException;
 import com.ecommerce.services.exceptions.MyBadRequestException;
 import com.ecommerce.services.exceptions.MyNotFoundException;
 import com.ecommerce.services.models.dtos.ErrorDto;
@@ -35,10 +36,19 @@ public class ErrorController {
 
     @ExceptionHandler({
             MyBadRequestException.class,
-            MethodArgumentTypeMismatchException.class
+            MethodArgumentTypeMismatchException.class,
+            NullPointerException.class
     })
     public ResponseEntity<?> badRequest(Exception e){
         HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorDto error = generateError(status, e);
+        return ResponseEntity.status(status).body(error);
+    }
+    @ExceptionHandler({
+            MyBadImplementationException.class
+    })
+    public ResponseEntity<?> badImplementation(Exception e){
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         ErrorDto error = generateError(status, e);
         return ResponseEntity.status(status).body(error);
     }
