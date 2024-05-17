@@ -44,6 +44,10 @@ public class UserEntity {
     )
     private List<RoleEntity> roles;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Carrito> carritos;
+
     public UserEntity(){
         roles = new ArrayList<>();
     }

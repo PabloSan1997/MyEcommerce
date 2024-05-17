@@ -1,5 +1,6 @@
 package com.ecommerce.services.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,6 +38,10 @@ public class Products {
     @JoinColumn(name = "id_category")
     @JsonIgnoreProperties({"products"})
     private Category category;
+
+    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Carrito> carritos;
 
     @OneToOne(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
     private ProductDescription productDescription;

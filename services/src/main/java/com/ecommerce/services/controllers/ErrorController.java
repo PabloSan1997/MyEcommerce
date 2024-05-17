@@ -6,6 +6,7 @@ import com.ecommerce.services.exceptions.MyNotFoundException;
 import com.ecommerce.services.models.dtos.ErrorDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -37,7 +38,8 @@ public class ErrorController {
     @ExceptionHandler({
             MyBadRequestException.class,
             MethodArgumentTypeMismatchException.class,
-            NullPointerException.class
+            NullPointerException.class,
+            HttpRequestMethodNotSupportedException.class
     })
     public ResponseEntity<?> badRequest(Exception e){
         HttpStatus status = HttpStatus.BAD_REQUEST;
