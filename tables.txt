@@ -27,6 +27,7 @@ Table Categories{
 
 Table Carritos{
   total ingeger
+  price double
   id_product bigint
   id_user bigint
   update_at timestamp
@@ -38,6 +39,8 @@ Table User{
   name varchar(60)
   password varchar
   enable boolean
+  create_at date
+  update_at date
 }
 
 Table user_role{
