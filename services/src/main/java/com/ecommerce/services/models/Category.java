@@ -19,11 +19,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 60)
     private String name;
     @Column(nullable = false, name = "url_image")
     private String urlImage;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"category"})
+    @JsonIgnoreProperties({"category", "productDescription"})
     private List<Products> products;
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
@@ -22,14 +23,20 @@ public class ErrorController {
                 .statusCode(statusCode).build();
     }
 
-    @ExceptionHandler({NoResourceFoundException.class, MyNotFoundException.class})
+    @ExceptionHandler({
+            NoResourceFoundException.class,
+            MyNotFoundException.class
+    })
     public ResponseEntity<?> notFound(Exception e){
         HttpStatus status = HttpStatus.NOT_FOUND;
         ErrorDto error = generateError(status, e);
         return ResponseEntity.status(status).body(error);
     }
 
-    @ExceptionHandler({MyBadRequestException.class})
+    @ExceptionHandler({
+            MyBadRequestException.class,
+            MethodArgumentTypeMismatchException.class
+    })
     public ResponseEntity<?> badRequest(Exception e){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ErrorDto error = generateError(status, e);

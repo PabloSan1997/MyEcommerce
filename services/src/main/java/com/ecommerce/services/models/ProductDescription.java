@@ -1,5 +1,6 @@
 package com.ecommerce.services.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,8 @@ public class ProductDescription {
     private Long id;
     @Column(nullable = false, length = 500)
     private String description;
+    @Column(nullable = false, length = 2000)
+    private String specifications;
     @Column(nullable = false, name = "url_one")
     private String imageOne;
     @Column(nullable = false, name = "url_two")
@@ -31,6 +34,7 @@ public class ProductDescription {
 
     @OneToOne
     @JoinColumn(name = "id_product")
+    @JsonIgnore
     private Products products;
 
     @PrePersist
