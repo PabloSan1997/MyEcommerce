@@ -41,18 +41,18 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
-    @GetMapping("/carrito}")
+    @GetMapping("/carrito")
     public ResponseEntity<?> getCarrito(@RequestAttribute String username) {
         var res = carritoService.findCarritoByEmailUser(username);
         return ResponseEntity.ok().body(res);
     }
 
     @PatchMapping("/carrito/{id}")
-    public ResponseEntity<?> patchCarrito(@Valid @RequestBody EditCarritoDto editCarritoDto, BindingResult result, @PathVariable Long id, @RequestHeader String email) {
+    public ResponseEntity<?> patchCarrito(@Valid @RequestBody EditCarritoDto editCarritoDto, BindingResult result, @PathVariable Long id, @RequestAttribute String username) {
         if (result.hasFieldErrors()) {
             validationComponent.validarion(result);
         }
-        var res = carritoService.update(email, id, editCarritoDto);
+        var res = carritoService.update(username, id, editCarritoDto);
         return ResponseEntity.ok().body(res);
     }
 }

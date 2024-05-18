@@ -1,5 +1,7 @@
 package com.ecommerce.services.security;
 
+import com.ecommerce.services.security.filter.AuthenticationFilter;
+import com.ecommerce.services.security.filter.ValidationJwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +40,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/user/carrito/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/category", "/api/product").hasRole("ADMIN")
                         .anyRequest().permitAll())
+                .addFilter(new AuthenticationFilter(getAuthenticationManager()))
+                .addFilter(new ValidationJwtFilter(getAuthenticationManager()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
