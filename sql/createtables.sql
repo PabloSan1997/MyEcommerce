@@ -4,7 +4,7 @@ CREATE TABLE `categories` (
   `url_image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_t8o6pivur7nn124jehx7cygw5` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `products` (
   `in_stock` bit(1) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   KEY `FKip7b0y8ja7fsm5wl7mhmseh5n` (`id_category`),
   CONSTRAINT `FKip7b0y8ja7fsm5wl7mhmseh5n` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `product_description` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE `product_description` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_jvcp542h6v8ti5px0792a3qd0` (`id_product`),
   CONSTRAINT `FKnucpok4hnrc6nbd4i23x6brj1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `users` (
   `enable` bit(1) NOT NULL,
@@ -44,14 +44,14 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `roles` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(80) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_ofx66keruapi6vyqpv6f2or37` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `user_role` (
   `id_role` bigint NOT NULL,
@@ -76,6 +76,13 @@ CREATE TABLE `carrito` (
   KEY `FK3hw7ve0ulvvaoe120imm7xxex` (`id_user`),
   CONSTRAINT `FK3hw7ve0ulvvaoe120imm7xxex` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
   CONSTRAINT `FKqkkuyy3hexik6l77hx6u1s6u6` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 INSERT INTO roles(name) VALUES('ADMIN'), ('USER');
+
+insert into user_role(id_user, id_role) values('1', '1');
+
+select * from roles;
+
+
