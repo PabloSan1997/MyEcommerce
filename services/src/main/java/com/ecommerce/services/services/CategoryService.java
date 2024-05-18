@@ -10,4 +10,6 @@ public interface CategoryService {
     Category save(AddCategoryDto categoryDto);
     List<ShowCategoriesDto> findAll();
     Category findByName(String name);
+    void deleteCategory(Long id);
+    Category editCategory(Long id, AddCategoryDto categoryDto);
 }

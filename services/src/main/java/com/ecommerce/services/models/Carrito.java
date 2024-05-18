@@ -33,7 +33,7 @@ public class Carrito {
     private Products products;
     @ManyToOne
     @JoinColumn(name = "id_user")
-    @JsonIgnoreProperties({"roles"})
+    @JsonIgnoreProperties({"roles", "enable", "createAt", "updateAt"})
     private UserEntity user;
 
     @PrePersist

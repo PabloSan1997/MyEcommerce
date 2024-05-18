@@ -6,6 +6,7 @@ import com.ecommerce.services.models.Category;
 import com.ecommerce.services.models.ProductDescription;
 import com.ecommerce.services.models.Products;
 import com.ecommerce.services.models.dtos.AddProductDto;
+import com.ecommerce.services.models.dtos.EditProductDto;
 import com.ecommerce.services.models.dtos.ShowProductDto;
 import com.ecommerce.services.repositories.CategoryRepository;
 import com.ecommerce.services.repositories.ProductDescriptionRepository;
@@ -39,7 +40,7 @@ public class ProductServiceImp implements ProductService {
     @Transactional
     public Products save(AddProductDto addProductDto) {
         Optional<Category> oCategory = categoryRepository.findByName(addProductDto.getCategory());
-        Category category = oCategory.orElseThrow(()->{
+        Category category = oCategory.orElseThrow(() -> {
             throw new MyBadRequestException("No se encontro categoria");
         });
 
@@ -68,8 +69,58 @@ public class ProductServiceImp implements ProductService {
     @Transactional
     public Products findById(Long id) {
         Optional<Products> oProduct = productRepository.findById(id);
-        return oProduct.orElseThrow(()->{
+        return oProduct.orElseThrow(() -> {
             throw new MyNotFoundException("No se encontro producto");
         });
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        productRepository.findById(id).ifPresentOrElse(p -> {
+            productRepository.deleteById(p.getId());
+        }, () -> {
+            throw new MyNotFoundException("No se encontró producto a borrar");
+        });
+    }
+
+    @Override
+    public Products editProduct(Long id, EditProductDto editProductDto) {
+        String sCategory = editProductDto.getCategory();
+        Category category = categoryRepository.findByName(sCategory).orElseThrow(() -> {
+            throw new MyBadRequestException("No se puede editar ese producto");
+        });
+        Products product = productRepository.findById(id).orElseThrow(() -> {
+            throw new MyBadRequestException("No se puede editar ese producto");
+        });
+        ProductDescription productDescription = productDescriptionRepository.findById(
+                product.getProductDescription().getId()
+        ).orElseThrow(() -> {
+            throw new MyBadRequestException("No se puede editar ese producto");
+        });
+        String description = editProductDto.getDescription();
+        String specifications = editProductDto.getSpecifications();
+        String imageOne = editProductDto.getImageOne();
+        String imageTwo = editProductDto.getImageTwo();
+        String imageThree = editProductDto.getImageThree();
+        productDescription.setDescription(description);
+        productDescription.setImageOne(imageOne);
+        productDescription.setImageThree(imageThree);
+        productDescription.setImageTwo(imageTwo);
+        productDescription.setSpecifications(specifications);
+
+        productDescriptionRepository.save(productDescription);
+
+        String name = editProductDto.getName();
+        Double price = editProductDto.getPrice();
+        Boolean inStock = editProductDto.getInStock();
+        String urlImage = editProductDto.getUrlImage();
+
+        product.setName(name);
+        product.setPrice(price);
+        product.setInStock(inStock);
+        product.setUrlImage(urlImage);
+        product.setCategory(category);
+
+        return productRepository.save(product);
     }
 }

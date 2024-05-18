@@ -30,7 +30,13 @@ public class CarritoServiceImp implements CarritoService {
 
     @Override
     public List<Carrito> findCarritoByEmailUser(String email) {
-        return carritoRepository.findByEmailUser(email);
+        List<Carrito> carritos = carritoRepository.findByEmailUser(email);
+        Iterable<Carrito> aCarrito = carritos.stream().map(c->{
+            Double price = c.getProducts().getPrice();
+            c.setPrice(price);
+            return c;
+        }).toList();
+        return (List<Carrito>) carritoRepository.saveAll(aCarrito);
     }
 
     @Override
@@ -43,6 +49,8 @@ public class CarritoServiceImp implements CarritoService {
         Products products = productRepository.findById(idProduct).orElseThrow(() -> {
             throw new MyBadRequestException("No se encontro producto");
         });
+        Optional<Carrito> checCarrito = carritoRepository.findBayUserAndProduct(userEntity.getId(), idProduct);
+        if(checCarrito.isPresent()) throw new MyBadRequestException("Ya existe carrito con ese producto");
         Carrito carrito = Carrito.builder()
                 .price(products.getPrice())
                 .user(userEntity)

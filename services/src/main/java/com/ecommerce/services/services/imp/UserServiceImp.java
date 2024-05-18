@@ -2,9 +2,11 @@ package com.ecommerce.services.services.imp;
 
 import com.ecommerce.services.exceptions.MyBadImplementationException;
 import com.ecommerce.services.exceptions.MyBadRequestException;
+import com.ecommerce.services.exceptions.MyNotFoundException;
 import com.ecommerce.services.models.RoleEntity;
 import com.ecommerce.services.models.UserEntity;
 import com.ecommerce.services.models.dtos.RegisterDto;
+import com.ecommerce.services.models.dtos.UserInfoDto;
 import com.ecommerce.services.repositories.RoleRepository;
 import com.ecommerce.services.repositories.UserRepository;
 import com.ecommerce.services.services.UserService;
@@ -40,5 +42,12 @@ public class UserServiceImp implements UserService {
                 .name(name).email(email).password(passwordHash).build();
         userEntity.addRole(role);
         return userRepository.save(userEntity);
+    }
+
+    @Override
+    public UserInfoDto findUser(String email) {
+        Optional<UserInfoDto> userInfoDto = userRepository.findInfo(email);
+        if(userInfoDto.isEmpty()) throw new MyNotFoundException("No se encontro usuario");
+        return userInfoDto.get();
     }
 }

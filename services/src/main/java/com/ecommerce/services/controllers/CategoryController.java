@@ -39,4 +39,15 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id){
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editCategory(@Valid @RequestBody AddCategoryDto addCategoryDto, BindingResult result, @PathVariable Long id){
+        var res = categoryService.editCategory(id, addCategoryDto);
+        return ResponseEntity.ok().body(res);
+    }
 }

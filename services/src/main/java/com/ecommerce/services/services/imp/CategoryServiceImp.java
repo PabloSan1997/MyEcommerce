@@ -40,8 +40,29 @@ public class CategoryServiceImp implements CategoryService {
     @Override
     public Category findByName(String name) {
         Optional<Category> optionalCategory = categoryRepository.findByName(name);
-        return optionalCategory.orElseThrow(()->{
+        return optionalCategory.orElseThrow(() -> {
             throw new MyNotFoundException("No se encontró categoría con ese nombre");
         });
+    }
+
+    @Override
+    public void deleteCategory(Long id) {
+        categoryRepository.findById(id).ifPresentOrElse(c -> {
+            categoryRepository.deleteById(id);
+        }, () -> {
+            throw new MyNotFoundException("No se encontró categoría a borrar");
+        });
+    }
+
+    @Override
+    public Category editCategory(Long id, AddCategoryDto categoryDto) {
+        Category category = categoryRepository.findById(id).orElseThrow(()->{
+            throw  new MyBadRequestException("No se puede editar categoría");
+        });
+        String name = categoryDto.getName();
+        String urlImage = categoryDto.getUrlImage();
+        category.setUrlImage(urlImage);
+        category.setName(name);
+        return categoryRepository.save(category);
     }
 }

@@ -32,6 +32,12 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
+    @GetMapping("/info")
+    public ResponseEntity<?> findInfo(@RequestAttribute(name = "username") String email){
+        var res = userService.findUser(email);
+        return ResponseEntity.ok().body(res);
+    }
+
     @PostMapping("/carrito")
     public ResponseEntity<?> addCarrito(@Valid @RequestBody AddCarritoDto carritoDto, BindingResult result, @RequestAttribute String username) {
         if (result.hasFieldErrors()) {

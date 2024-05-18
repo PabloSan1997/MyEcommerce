@@ -26,10 +26,12 @@ public class SecurityConfig {
     AuthenticationManager getAuthenticationManager() throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -37,11 +39,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/user/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/carrito").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/user/carrito/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/user/carrito", "/api/product", "/api/category").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/user/carrito", "/api/user/info", "/api/product", "/api/product/{id}", "/api/category", "/api/category/name").hasRole("USER")
                         .requestMatchers(HttpMethod.PATCH, "/api/user/carrito/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/category", "/api/product").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/category/{id}", "/api/product/{id}").hasRole("ADMIN")
-                        .anyRequest().permitAll())
+                        .requestMatchers(HttpMethod.PUT, "/api/category/{id}", "/api/product/{id}").hasRole("ADMIN")
+                        .anyRequest().authenticated())
                 .addFilter(new AuthenticationFilter(getAuthenticationManager()))
                 .addFilter(new ValidationJwtFilter(getAuthenticationManager()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
