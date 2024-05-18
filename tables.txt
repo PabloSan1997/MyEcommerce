@@ -27,9 +27,11 @@ Table Categories{
 
 Table Carritos{
   total ingeger
+  total_price double
   price double
   id_product bigint
   id_user bigint
+  create_at timestamp
   update_at timestamp
 }
 
@@ -59,6 +61,7 @@ Ref: Products.id > Carritos.id_product
 Ref: Products.id - Product_Descriptions.id_product
 Ref: User.id <> user_role.id_user
 Ref: Roles.id <> user_role.id_roles
+
 
 
 //https://dbdiagram.io/home
