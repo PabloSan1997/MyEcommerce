@@ -53,12 +53,17 @@ public class CarritoServiceImp implements CarritoService {
     }
 
     @Override
-    public void delete(Long id) {
-        carritoRepository.findById(id).ifPresentOrElse(carrito -> {
-            carritoRepository.deleteById(carrito.getId());
-        }, () -> {
+    public void delete(String email, Long id) {
+        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(()->{
+            throw new MyBadRequestException("No se encontró usuario");
+        });
+        Carrito carrito = carritoRepository.findById(id).orElseThrow(() -> {
             throw new MyBadRequestException("No se encontro carrito");
         });
+        if(!carrito.getUser().getEmail().equals(userEntity.getEmail())){
+            throw new MyBadRequestException("No teienes permiso pra esto");
+        }
+        carritoRepository.deleteById(carrito.getId());
     }
 
     @Override

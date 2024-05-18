@@ -55,4 +55,10 @@ public class UserController {
         var res = carritoService.update(username, id, editCarritoDto);
         return ResponseEntity.ok().body(res);
     }
+    @DeleteMapping("/carrito/{id}")
+    public ResponseEntity<?> deleteCarrito(@PathVariable Long id, @RequestAttribute String username) {
+        carritoService.delete(username, id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

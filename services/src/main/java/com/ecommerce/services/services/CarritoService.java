@@ -10,6 +10,6 @@ import java.util.List;
 public interface CarritoService {
     List<Carrito> findCarritoByEmailUser(String email);
     Carrito save(String email, AddCarritoDto addCarritoDto);
-    void delete(Long id);
+    void delete(String email, Long id);
     Carrito update(String email, Long id,EditCarritoDto editCarritoDto);
 }
