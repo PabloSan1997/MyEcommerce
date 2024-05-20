@@ -1,7 +1,7 @@
 CREATE TABLE `categories` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
-  `url_image` varchar(255) NOT NULL,
+  `url_image` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_t8o6pivur7nn124jehx7cygw5` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -14,7 +14,7 @@ CREATE TABLE `products` (
   `id_category` bigint DEFAULT NULL,
   `update_at` datetime(6) DEFAULT NULL,
   `name` varchar(60) NOT NULL,
-  `url_image` varchar(255) NOT NULL,
+  `url_image` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKip7b0y8ja7fsm5wl7mhmseh5n` (`id_category`),
   CONSTRAINT `FKip7b0y8ja7fsm5wl7mhmseh5n` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`)
@@ -25,14 +25,12 @@ CREATE TABLE `product_description` (
   `id_product` bigint DEFAULT NULL,
   `update_at` datetime(6) DEFAULT NULL,
   `description` varchar(500) NOT NULL,
-  `specifications` varchar(2000) NOT NULL,
-  `url_one` varchar(255) NOT NULL,
-  `url_three` varchar(255) NOT NULL,
-  `url_two` varchar(255) NOT NULL,
+  `specifications` varchar(1000) NOT NULL,
+  `imagenes_url` varbinary(3000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_jvcp542h6v8ti5px0792a3qd0` (`id_product`),
   CONSTRAINT `FKnucpok4hnrc6nbd4i23x6brj1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `users` (
   `enable` bit(1) NOT NULL,
@@ -81,8 +79,11 @@ CREATE TABLE `carrito` (
 
 INSERT INTO roles(name) VALUES('ADMIN'), ('USER');
 
-insert into user_role(id_user, id_role) values('1', '1');
 
 select * from roles;
+
+insert into user_role(id_user, id_role) values('1', '1');
+
+
 
 

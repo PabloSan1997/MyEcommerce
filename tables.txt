@@ -3,7 +3,7 @@ Table Products{
   name varchar(60)
   price double
   in_stock boolean
-  url_image string
+  url_image varchar(1000)
   id_category bigint
   create_at timestamp
   update_at timestamp
@@ -11,10 +11,8 @@ Table Products{
 
 Table Product_Descriptions{
   description varchar(500)
-  specifications varchar(2000)
-  image_one varchar(3200)
-  image_two varcahr(3200)
-  image_three varchar(3000)
+  specifications varchar(1000)
+  imagenes_url varbinary(3000)
   id_product bigint
   update_at timestamp
 }
@@ -61,7 +59,3 @@ Ref: Products.id > Carritos.id_product
 Ref: Products.id - Product_Descriptions.id_product
 Ref: User.id <> user_role.id_user
 Ref: Roles.id <> user_role.id_roles
-
-
-
-//https://dbdiagram.io/home
