@@ -52,9 +52,7 @@ public class ProductServiceImp implements ProductService {
 
         ProductDescription productDescription = ProductDescription.builder()
                 .description(addProductDto.getDescription())
-                .imageOne(addProductDto.getImageOne())
-                .imageTwo(addProductDto.getImageTwo())
-                .imageThree(addProductDto.getImageThree())
+                .imagenes(addProductDto.getImagenes())
                 .products(products)
                 .specifications(addProductDto.getSpecifications()).build();
 
@@ -99,13 +97,9 @@ public class ProductServiceImp implements ProductService {
         });
         String description = editProductDto.getDescription();
         String specifications = editProductDto.getSpecifications();
-        String imageOne = editProductDto.getImageOne();
-        String imageTwo = editProductDto.getImageTwo();
-        String imageThree = editProductDto.getImageThree();
+        List<String> imagenes = editProductDto.getImagenes();
         productDescription.setDescription(description);
-        productDescription.setImageOne(imageOne);
-        productDescription.setImageThree(imageThree);
-        productDescription.setImageTwo(imageTwo);
+        productDescription.setImagenes(imagenes);
         productDescription.setSpecifications(specifications);
 
         productDescriptionRepository.save(productDescription);

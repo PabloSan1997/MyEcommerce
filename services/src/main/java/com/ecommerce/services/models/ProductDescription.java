@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,12 +24,10 @@ public class ProductDescription {
     private String description;
     @Column(nullable = false, length = 2000)
     private String specifications;
-    @Column(nullable = false, name = "url_one")
-    private String imageOne;
-    @Column(nullable = false, name = "url_two")
-    private String imageTwo;
-    @Column(nullable = false, name = "url_three")
-    private String imageThree;
+
+    @Column(name = "imagenes_url")
+    private List<String> imagenes;
+
     @Column(name = "update_at")
     private Date updateAt;
 

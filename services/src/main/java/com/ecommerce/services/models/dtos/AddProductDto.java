@@ -1,11 +1,14 @@
 package com.ecommerce.services.models.dtos;
 
+import com.ecommerce.services.myValidations.ImageLength;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,12 +27,10 @@ public class AddProductDto {
     @NotBlank
     @Size(min = 2, max=2000)
     private String specifications;
-    @NotBlank
-    private String imageOne;
-    @NotBlank
-    private String imageTwo;
-    @NotBlank
-    private String imageThree;
+
+    @NotNull
+    @ImageLength
+    private List<String> imagenes;
     @NotBlank
     @Size(min = 2, max = 60)
     private String category;
