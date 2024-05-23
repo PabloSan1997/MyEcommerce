@@ -1,5 +1,29 @@
 /// <reference types="vite/client" />
 
+type InitialSateHome = {
+    token: string,
+    userInfo: {
+        eamil: string,
+        name: string
+    }
+    categories:CaterogyResponse[],
+    products:ProductResponse[],
+    oneCategory:OneCategoryResponse,
+    oneProduct:OneProduct
+}
+
+type InitialStateFomrs = {
+    login:LoginRequest,
+    register:Register,
+    carrito:PostCarrito,
+    pCarrito:{
+        total:number
+    },
+    category:AddCategory,
+    product: AddProduct,
+    putProduct:PutProduct,
+    message:string
+}
 
 //------USER-------
 
@@ -71,6 +95,12 @@ interface CategoryProduct {
     createAt: Date;
 }
 
+interface Category {
+    id: number;
+    name: string;
+    urlImage: string;
+}
+
 //-----Products---------
 interface ProductResponse extends CategoryProduct {
     category: string;
@@ -102,11 +132,6 @@ interface OneProduct {
     productDescription: ProductDescription;
 }
 
-interface Category {
-    id: number;
-    name: string;
-    urlImage: string;
-}
 
 interface ProductDescription {
     id: number;
@@ -114,4 +139,9 @@ interface ProductDescription {
     specifications: string;
     imagenes: string[];
     updateAt: string;
+}
+
+interface PostCarrito{
+    total:number,
+	productId:number
 }

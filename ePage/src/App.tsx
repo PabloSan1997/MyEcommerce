@@ -1,7 +1,8 @@
+import { ProviderRoutes } from "./IndexRoutes";
 
 
 export function App(){
     return(
-        <div className="app">hola mundo</div>
+        <ProviderRoutes/>
     );
 }

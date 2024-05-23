@@ -34,4 +34,14 @@ export class UserApi{
         }
         return this.login(gLogin);
     }
+    async userInfo(token:string){
+        const ft = await fetch(`${apiConfig.url}/api/user/info`, {
+            method:'GET',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(!ft.ok) throw await ft.json();
+        return ft.json();
+    }
 }
