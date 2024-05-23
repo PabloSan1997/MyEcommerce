@@ -9,7 +9,8 @@ type InitialSateHome = {
     categories:CaterogyResponse[],
     products:ProductResponse[],
     oneCategory:OneCategoryResponse,
-    oneProduct:OneProduct
+    oneProduct:OneProduct,
+    message:string
 }
 
 type InitialStateFomrs = {
@@ -21,8 +22,7 @@ type InitialStateFomrs = {
     },
     category:AddCategory,
     product: AddProduct,
-    putProduct:PutProduct,
-    message:string
+    putProduct:PutProduct
 }
 
 //------USER-------

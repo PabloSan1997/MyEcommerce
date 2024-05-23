@@ -1,3 +1,5 @@
+import { storageLogin } from "./storage"
+
 export const initialOneProduct:OneProduct= {
     id: 0,
     name: "",
@@ -28,7 +30,7 @@ export const initialCategory: OneCategoryResponse = {
 }
 
 export const initialState:InitialSateHome = {
-    token: "",
+    token: storageLogin.read(),
     userInfo: {
         eamil: "",
         name: ""
@@ -36,7 +38,8 @@ export const initialState:InitialSateHome = {
     categories: [],
     products: [],
     oneCategory: initialCategory,
-    oneProduct: initialOneProduct
+    oneProduct: initialOneProduct,
+    message:''
 }
 
 
@@ -81,6 +84,5 @@ export const initialStateFomrs:InitialStateFomrs = {
         specifications: "",
         imagenes: [],
         category: ""
-    },
-    message: ""
+    }
 }

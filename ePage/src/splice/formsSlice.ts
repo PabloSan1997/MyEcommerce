@@ -14,7 +14,6 @@ const formSlice = createSlice({
             state.pCarrito = initialStateFomrs.pCarrito;
             state.putProduct = initialStateFomrs.putProduct;
             state.product = initialStateFomrs.product;
-            state.message = '';
         },
         escribirLogin:(state, action:PayloadAction<LoginRequest>)=>{
             state.login = action.payload;
@@ -36,9 +35,6 @@ const formSlice = createSlice({
         },
         escribirPutCarrito:(state, action:PayloadAction<{total:number}>)=>{
             state.pCarrito = action.payload;
-        },
-        escribirMessage:(state, action:PayloadAction<{message:string}>)=>{
-            state.message = action.payload.message;
         }
     }
 });

@@ -4,7 +4,7 @@ import { apiConfig } from "./apiConfig";
 
 export class UserApi{
     async login(data:LoginRequest):Promise<LoginResposne>{
-        const ft = await fetch(apiConfig.url, {
+        const ft = await fetch(`${apiConfig.url}/login`, {
             method:'POST',
             headers:{
                 ...apiConfig.contentHeader
