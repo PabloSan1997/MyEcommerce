@@ -145,3 +145,8 @@ interface PostCarrito{
     total:number,
 	productId:number
 }
+
+//---------children-------
+type Children = {
+    children:JSX.Element|JSX.Element[]
+}

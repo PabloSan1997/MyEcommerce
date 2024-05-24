@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
-import { loginExtraReducer } from "./extraReducer/userExtraReducers";
+import { loginExtraReducer, readInfoUserExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
 
 
@@ -8,6 +8,10 @@ const commereSlice = createSlice({
     name:'slice/ecommerse',
     initialState,
     reducers:{
+        logout:(state)=>{
+            state.token = '';
+            storageLogin.save('');
+        },
         borrarProduct:(state)=>{
             state.oneProduct = initialOneProduct;
         },
@@ -32,7 +36,16 @@ const commereSlice = createSlice({
             state.message = action.error.message || 'Error';
             state.token = '';
             storageLogin.save('');
-        })
+        });
+
+        builder.addCase(readInfoUserExtraReducer.fulfilled, (state, action)=>{
+            state.userInfo = action.payload;
+        });
+        builder.addCase(readInfoUserExtraReducer.rejected, (state)=>{
+            state.userInfo = initialState.userInfo;
+            state.token = '';
+            storageLogin.save('');
+        });
     }
 });
 

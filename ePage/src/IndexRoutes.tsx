@@ -1,39 +1,61 @@
 
-import {useRoutes, HashRouter, Navigate} from 'react-router-dom';
+import { useRoutes, HashRouter, Navigate } from 'react-router-dom';
 import { stringRoutes } from './utilities/routes';
 import { Home } from './layouts/Home';
 import { Login } from './layouts/Login';
 import { useAppSelector } from './hooks';
+import Header from './components/Header';
+import { Register } from './layouts/Register';
 
- function Redirect() {
+function Redirect() {
     const token = useAppSelector(state => state.commerseReducer.token);
-    const ruta = token?stringRoutes.home:stringRoutes.login;
-    return <Navigate to={ruta}/>
+    const ruta = token ? stringRoutes.home : stringRoutes.login;
+    return <Navigate to={ruta} />
 }
 
-
+function Viewtoken({ children }: Children) {
+    const token = useAppSelector(state => state.commerseReducer.token);
+    if (!token)
+        return <Navigate to={stringRoutes.login} />
+    return (
+        <>
+            {children}
+        </>
+    )
+}
 
 const Routes = () => useRoutes([
     {
-        path:stringRoutes.home,
-        element:<Home/>
+        path: stringRoutes.home,
+        element: (
+            <>
+                <Viewtoken>
+                    <Home />
+                </Viewtoken>
+            </>
+        )
     },
     {
-        path:stringRoutes.login,
-        element:<Login/>
+        path: stringRoutes.login,
+        element: <Login />
     },
     {
-        path:'/',
-        element:<Redirect/>
+        path: '/',
+        element: <Redirect />
+    },
+    {
+        path:stringRoutes.register,
+        element:<Register/>
     }
 ]);
 
 
 
-export function ProviderRoutes(){
-    return(
+export function ProviderRoutes() {
+    return (
         <HashRouter>
-            <Routes/>
+            <Header/>
+            <Routes />
         </HashRouter>
     );
 }
