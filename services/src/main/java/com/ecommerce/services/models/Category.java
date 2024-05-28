@@ -24,6 +24,6 @@ public class Category {
     @Column(nullable = false, name = "url_image")
     private String urlImage;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"category", "productDescription"})
+    @JsonIgnoreProperties({"category", "productDescription", "updateAt"})
     private List<Products> products;
 }
