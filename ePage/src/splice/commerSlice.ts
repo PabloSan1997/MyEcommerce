@@ -1,7 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
-import { loginExtraReducer, readInfoUserExtraReducer } from "./extraReducer/userExtraReducers";
+import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
+import { readCategoriesExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
 
 
 const commereSlice = createSlice({
@@ -45,6 +46,33 @@ const commereSlice = createSlice({
             state.userInfo = initialState.userInfo;
             state.token = '';
             storageLogin.save('');
+        });
+
+        builder.addCase(registerExtraReducer.fulfilled, (state, action)=>{
+            state.token = action.payload.token;
+            storageLogin.save(action.payload.token);
+            state.message = '';
+        });
+
+        builder.addCase(registerExtraReducer.rejected, (state, action)=>{
+            state.token="";
+            state.message = action.error.message as string;
+        });
+
+        //------Categories--------
+        builder.addCase(readCategoriesExtraReducer.fulfilled, (state, action:PayloadAction<CaterogyResponse[]>)=>{
+            state.categories = action.payload;
+        });
+        builder.addCase(readCategoriesExtraReducer.rejected, (state)=>{
+            state.categories = [];
+        });
+
+        //-----Products-----
+        builder.addCase(readProductsExtraReducer.fulfilled, (state, action:PayloadAction<ProductResponse[]>)=>{
+            state.products = action.payload;
+        });
+        builder.addCase(readProductsExtraReducer.rejected, (state)=>{
+            state.products = [];
         });
     }
 });

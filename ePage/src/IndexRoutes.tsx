@@ -6,6 +6,7 @@ import { Login } from './layouts/Login';
 import { useAppSelector } from './hooks';
 import Header from './components/Header';
 import { Register } from './layouts/Register';
+import { Carritos } from './layouts/Carritos';
 
 function Redirect() {
     const token = useAppSelector(state => state.commerseReducer.token);
@@ -46,6 +47,10 @@ const Routes = () => useRoutes([
     {
         path:stringRoutes.register,
         element:<Register/>
+    },
+    {
+        path:stringRoutes.carrito,
+        element:<Carritos/>
     }
 ]);
 

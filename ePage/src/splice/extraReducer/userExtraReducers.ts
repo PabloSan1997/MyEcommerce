@@ -29,3 +29,15 @@ export const loginExtraReducer = createAsyncThunk(
         }
     }
 );
+
+export const registerExtraReducer = createAsyncThunk(
+    'extraReducer/register',
+    async(data:Register)=>{
+        try {
+            return readApi.register(data);
+        } catch (error) {
+            const { message } = error as ErrorDto;
+            throw { message };
+        }
+    }
+)

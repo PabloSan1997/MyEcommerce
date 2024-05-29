@@ -17,7 +17,7 @@ export class UserApi{
         return ft.json();
     }
     async register(data:Register):Promise<LoginResposne>{
-        const ft = await fetch(apiConfig.url, {
+        const ft = await fetch(`${apiConfig.url}/api/user/register`, {
             method:'POST',
             headers:{
                 ...apiConfig.contentHeader

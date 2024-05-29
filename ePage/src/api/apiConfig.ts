@@ -2,7 +2,7 @@
 
 
 export const apiConfig = {
-    url:'http://localhost:3001',
+    url:import.meta.env.DEV?'http://localhost:3001':'https://eccomersserivce.onrender.com',
     contentHeader:{
         'Content-Type':'application/json'
     },

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { commersActions } from "../splice/commerSlice";
 import { stringRoutes } from "../utilities/routes";
@@ -11,9 +11,17 @@ export default function Header() {
         <header>
             <h1>Tienda</h1>
             {
-                state.token ? (<button
-                    onClick={() => dispatch(commersActions.logout())}
-                >Logout</button>) : (
+                state.token ? (
+                    <>
+                        <nav>
+                            <Link to={stringRoutes.home}>Home</Link>
+                            <Link to={stringRoutes.carrito}>{state.userInfo.name}</Link>
+                        </nav>
+                        <button
+                            onClick={() => dispatch(commersActions.logout())}
+                        >Logout</button>
+                    </>
+                ) : (
                     <nav>
                         <NavLink to={stringRoutes.login}>Login</NavLink>
                         <NavLink to={stringRoutes.register}>Register</NavLink>
