@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Products, Long> {
-    @Query("select new com.ecommerce.services.models.dtos.ShowProductDto(p.id, p.name, p.price, p.inStock, p.urlImage, p.category.name, p.createAt) from Products p")
+    @Query("select new com.ecommerce.services.models.dtos.ShowProductDto(p.id, p.name, p.price, p.inStock, p.urlImage, p.category.name, p.createAt) from Products p order by p.updateAt desc")
     List<ShowProductDto> findAllProducts();
 }
