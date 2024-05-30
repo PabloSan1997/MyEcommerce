@@ -1,0 +1,45 @@
+@import 'colors.scss';
+
+.category_area {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $outrageous-orange-700;
+    border-radius: 0.5rem;
+    background: $outrageous-orange-50;
+    overflow: hidden;
+    h2 {
+        font-size: 1.3rem;
+        margin: 0.2rem auto;
+        background: $outrageous-orange-700;
+        width: 100%;
+        margin-top: 0;
+        text-align: center;
+        padding: 0.2rem 0;
+        color: $outrageous-orange-50;
+        font-weight: 400;
+    }
+
+    ul {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        li {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            a {
+                text-decoration: none;
+                width: 100%;
+                padding:0.5rem;
+                box-sizing: border-box;
+                color: $outrageous-orange-950;
+                font-weight: bold;
+                font-size: 1.1rem;
+                &:hover{
+                    background: $outrageous-orange-200;
+                }
+            }
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { readOneCategoryExtraReducer } from '../splice/extraReducer/productExtraReducer';
 import { ProductOptionCategory } from '../components/ProductOptionCategory';
+import '../styles/categoryOne.scss';
 
 export function OneCategory() {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ export function OneCategory() {
   return (
     <div className="category_container">
       <h2>{category.name}</h2>
-      <div className="product_area">
+      <div className="product_area_category">
         {category.products.map(p => (
           <ProductOptionCategory key={p.id} {...p}/>
         ))}

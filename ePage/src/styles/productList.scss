@@ -1,0 +1,64 @@
+@import 'colors.scss';
+
+.product_area {
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+
+    .product_option {
+        background: $outrageous-orange-100;
+        border-radius: 0.5rem;
+        position: relative;
+        overflow: hidden;
+        .price {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.514);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 100rem;
+            right: 0.2rem;
+            top: 0.2rem;
+        }
+
+        img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .area_product_info {
+            width: 95%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.2rem;
+
+            h3 {
+                color: $outrageous-orange-950;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.05);
+                    cursor: pointer;
+                }
+            }
+
+            span {
+                color: $outrageous-orange-900;
+
+                &.category {
+                    &:hover {
+                        transform: scale(1.05);
+                        cursor: pointer;
+                    }
+                }
+
+                &.fecha {
+                    margin-top: 0.8rem;
+                }
+            }
+        }
+    }
+}

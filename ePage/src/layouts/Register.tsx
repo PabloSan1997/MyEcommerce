@@ -42,7 +42,7 @@ export function Register() {
             />
             <label htmlFor="">Nombre</label>
             <input
-                type='password'
+                type='text'
                 placeholder="Escribir..."
                 value={state.name}
                 onChange={e => dispatch(formActions.escribirRegister({ ...state, name: e.target.value }))}

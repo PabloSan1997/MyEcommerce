@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { readProductsExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { ProductOption } from "./ProductOption";
-
+import '../styles/productList.scss'
 
 export function ProductsList() {
   const dispatch = useAppDispatch();

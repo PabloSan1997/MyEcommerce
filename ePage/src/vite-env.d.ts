@@ -92,7 +92,7 @@ interface CategoryProduct {
     price: number;
     inStock: boolean;
     urlImage: string;
-    createAt: Date;
+    createAt: string;
 }
 
 interface Category {

@@ -1,0 +1,13 @@
+@import 'colors.scss';
+
+.container{
+    width: 99%;
+    margin:1rem auto;
+    display: flex;
+    .menus{
+        width: 15%;
+    }
+    .main_part{
+        width: 85%;
+    }
+}
