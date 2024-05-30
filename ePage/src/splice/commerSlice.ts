@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
 import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
-import { readCategoriesExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
+import { readCategoriesExtraReducer, readOneCategoryExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
 
 
 const commereSlice = createSlice({
@@ -65,6 +65,13 @@ const commereSlice = createSlice({
         });
         builder.addCase(readCategoriesExtraReducer.rejected, (state)=>{
             state.categories = [];
+        });
+
+        builder.addCase(readOneCategoryExtraReducer.fulfilled, (state, action)=>{
+            state.oneCategory = action.payload;
+        });
+        builder.addCase(readOneCategoryExtraReducer.rejected, (state)=>{
+            state.oneCategory = initialCategory;
         });
 
         //-----Products-----

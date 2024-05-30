@@ -6,7 +6,7 @@ import { formActions } from "../splice/formsSlice";
 import { stringRoutes } from "../utilities/routes";
 import { useEffect } from "react";
 import { commersActions } from "../splice/commerSlice";
-
+import '../styles/form.scss';
 
 export function Login() {
     const state = useAppSelector(state => state.formReducer.login);
@@ -38,7 +38,7 @@ export function Login() {
                 value={state.password}
                 onChange={e => dispatch(formActions.escribirLogin({ ...state, password: e.target.value }))}
             />
-            <button type="submit">Entrar</button>
+            <button type="submit" className="theboton">Entrar</button>
             <p className="error">{message}</p>
         </form>
     );

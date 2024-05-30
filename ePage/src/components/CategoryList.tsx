@@ -15,7 +15,7 @@ export function CategoryList() {
         <nav className="category_area">
             {
                 state.categories.map(c => (
-                    <Link key={c.id} to={`/api/category/name?category=${c.name}`}>{c.name}</Link>
+                    <Link key={c.id} to={`/category?name=${c.name}`}>{c.name}</Link>
                 ))
             }
         </nav>

@@ -1,0 +1,51 @@
+@import 'colors.scss';
+
+.form{
+    width: 50%;
+    margin:2rem auto;
+    display: flex;
+    flex-direction: column;
+    background: $outrageous-orange-100;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px  $outrageous-orange-950;
+    h2{
+        width: 100%;
+        background: $outrageous-orange-900;
+        text-align: center;
+        padding: 0.2rem 0;
+        font-size: 1.8rem;
+        color: $outrageous-orange-50;
+    }
+    label{
+        font-size: 1.5rem;
+        width: 90%;
+        margin:0.8rem auto 0.1rem auto;
+        color: $outrageous-orange-950;
+    }
+    input{
+        width: 90%;
+        margin: auto;
+        padding: 0.3rem;
+        box-sizing: border-box;
+        font-size: 1.2rem;
+        outline: none;
+        background: $outrageous-orange-50;
+        border: 1px solid $outrageous-orange-900;
+        border-radius: 0.2rem;
+        color: $outrageous-orange-950;
+        &::placeholder{
+            color: $outrageous-orange-800;
+        }
+    }
+    button{
+        margin:1rem auto;
+        font-size: 1.2rem;
+    }
+    .error{
+        margin: auto auto 0.2rem 2rem;
+        color: rgb(184, 15, 15);
+        font-size: 1.2rem;
+        max-width: 80%;
+    }
+}

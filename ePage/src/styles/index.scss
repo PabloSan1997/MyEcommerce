@@ -1,5 +1,22 @@
+@import 'colors.scss';
+
+
 *{
     margin:0;
     padding:0;
 }
 
+.theboton{
+    width: fit-content;
+    padding: 0.2rem 0.8rem;
+    background: $outrageous-orange-300;
+    border-radius: 0.5rem;
+    border: 2px outset $outrageous-orange-800;
+    color: $outrageous-orange-950 ;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    &:hover{
+        background:$outrageous-orange-800 ;
+        color: $outrageous-orange-300;
+    }
+}

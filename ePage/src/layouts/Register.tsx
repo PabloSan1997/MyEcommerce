@@ -47,7 +47,7 @@ export function Register() {
                 value={state.name}
                 onChange={e => dispatch(formActions.escribirRegister({ ...state, name: e.target.value }))}
             />
-            <button type="submit">Entrar</button>
+            <button type="submit" className="theboton">Entrar</button>
             <p className="error">{message}</p>
         </form>
     );

@@ -13,6 +13,16 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
+    async readOneCategory(token:string, category:string):Promise<OneCategoryResponse>{
+        const ft = await fetch(`${apiConfig.url}/api/category/name?category=${category}`, {
+            method:'GET',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(ft.ok) return ft.json();
+        throw await ft.json();
+    }
     async readProducts(token:string):Promise<ProductResponse[]>{
         const ft = await fetch(`${apiConfig.url}/api/product`, {
             method:'GET',
