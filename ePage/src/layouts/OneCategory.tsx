@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { readOneCategoryExtraReducer } from '../splice/extraReducer/productExtraReducer';
 import { ProductOptionCategory } from '../components/ProductOptionCategory';
 import '../styles/categoryOne.scss';
+import { CategoryPortada } from '../components/CategoryPortada';
 
 export function OneCategory() {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ export function OneCategory() {
   const category = state.oneCategory;
   return (
     <div className="category_container">
-      <h2>{category.name}</h2>
+      <CategoryPortada {...category}/>
       <div className="product_area_category">
         {category.products.map(p => (
           <ProductOptionCategory key={p.id} {...p}/>

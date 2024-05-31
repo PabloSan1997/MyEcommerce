@@ -11,6 +11,7 @@ import { Carritos } from './layouts/Carritos';
 import { useEffect } from 'react';
 import { readInfoUserExtraReducer } from './splice/extraReducer/userExtraReducers';
 import { OneCategory } from './layouts/OneCategory';
+import { OneProduct } from './layouts/OneProduct';
 
 function Redirect() {
     const token = useAppSelector(state => state.commerseReducer.token);
@@ -70,6 +71,14 @@ const Routes = () => useRoutes([
         element:(
             <Viewtoken>
                 <OneCategory/>
+            </Viewtoken>
+        )
+    },
+    {
+        path:stringRoutes.oneProduct,
+        element:(
+            <Viewtoken>
+                <OneProduct/>
             </Viewtoken>
         )
     }

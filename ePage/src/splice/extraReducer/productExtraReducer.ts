@@ -29,10 +29,22 @@ export const readProductsExtraReducer = createAsyncThunk(
 );
 
 export const readOneCategoryExtraReducer = createAsyncThunk(
-    'extraReducer/readOneProducts',
+    'extraReducer/readOneCategory',
     async ({ token, name }: { token: string, name: string }) => {
         try {
             return readApi.readOneCategory(token, name);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);
+
+export const readOneProductExtraReducer = createAsyncThunk(
+    'extraReducer/readOneProduct',
+    async({token, id}:{token:string, id:number})=>{
+        try {
+            return readApi.readOneProduct(token, id);
         } catch (error) {
             const err = error as ErrorDto;
             throw err;

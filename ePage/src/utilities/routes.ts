@@ -6,5 +6,6 @@ export const stringRoutes = {
     home:'/home',
     carrito:'/carrito',
     category:'/category',
-    product:'/product'
+    product:'/product',
+    oneProduct:'/product/:id'
 }
