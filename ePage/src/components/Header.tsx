@@ -4,6 +4,7 @@ import { commersActions } from "../splice/commerSlice";
 import { stringRoutes } from "../utilities/routes";
 import '../styles/header.scss';
 import { useState } from "react";
+import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 export default function Header() {
     const dispatch = useAppDispatch();
@@ -11,7 +12,7 @@ export default function Header() {
     const [show, setShow] = useState(false);
     return (
         <header>
-            <h1>Tienda</h1>
+            <h1>Mi Tienda</h1>
             <div className="button_part">
                 {
                     state.token ? (
@@ -27,7 +28,7 @@ export default function Header() {
                                         className="my_menu"
                                         onMouseLeave={()=>setShow(false)}
                                         >
-                                            <Link className="car op" to={stringRoutes.carrito}>Carrito</Link>
+                                            <Link className="car op" to={stringRoutes.carrito}>Carrito <ShoppingCartIcon className="carrito"/></Link>
                                             <button className="op" onClick={() => dispatch(commersActions.logout())}>Logout</button>
                                         </ul>
                                     ) : null

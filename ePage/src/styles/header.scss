@@ -1,14 +1,16 @@
 @import 'colors.scss';
+@import 'fontstyles.scss';
 
 header {
     background: $outrageous-orange-700;
     display: flex;
     flex-direction: column;
-    height: 5rem;
+    height: 5.5rem;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.295);
     h1 {
         color: $outrageous-orange-50;
         margin: auto auto auto 2rem;
+        font-family: $lilita-one;
     }
 
     .button_part {
@@ -46,7 +48,8 @@ header {
         display: flex;
         justify-content: space-between;
         position: relative;
-
+        z-index: 2;
+     
         a {
             text-decoration: none;
             font-size: 1.5rem;
@@ -85,10 +88,15 @@ header {
                 padding:0.5rem 0;
                 font-family: arial;
                 cursor: pointer;
+                color: $outrageous-orange-950;
+                .carrito{
+                    width: 1rem;
+                }
                 &:hover{
                     background: $outrageous-orange-200 ;
                     text-decoration: none;
                 }
+                
             }
             .car {
                 &:hover {
