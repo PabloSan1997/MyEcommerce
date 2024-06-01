@@ -44,7 +44,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/user/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/carrito").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/user/carrito/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/user/carrito", "/api/user/info", "/api/product", "/api/product/{id}", "/api/category", "/api/category/name").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/user/carrito",
+                                "/api/user/info", "/api/product",
+                                "/api/product/{id}", "/api/category",
+                                "/api/category/name",
+                                "/api/user/view").hasRole("USER")
                         .requestMatchers(HttpMethod.PATCH, "/api/user/carrito/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/category", "/api/product").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/category/{id}", "/api/product/{id}").hasRole("ADMIN")
@@ -58,7 +63,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE"));

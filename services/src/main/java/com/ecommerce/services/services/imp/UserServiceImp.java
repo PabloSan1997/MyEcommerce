@@ -7,6 +7,7 @@ import com.ecommerce.services.models.RoleEntity;
 import com.ecommerce.services.models.UserEntity;
 import com.ecommerce.services.models.dtos.RegisterDto;
 import com.ecommerce.services.models.dtos.UserInfoDto;
+import com.ecommerce.services.models.dtos.ViewAdminDto;
 import com.ecommerce.services.repositories.RoleRepository;
 import com.ecommerce.services.repositories.UserRepository;
 import com.ecommerce.services.services.UserService;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +51,15 @@ public class UserServiceImp implements UserService {
         Optional<UserInfoDto> userInfoDto = userRepository.findInfo(email);
         if(userInfoDto.isEmpty()) throw new MyNotFoundException("No se encontro usuario");
         return userInfoDto.get();
+    }
+
+    @Override
+    public ViewAdminDto viewAdmin(String username) {
+        UserEntity user = userRepository.findByEmail(username).orElseThrow(()->{
+            throw new MyNotFoundException("No se encontro usuario");
+        });
+        List<RoleEntity> role = user.getRoles();
+        Optional<RoleEntity> theRole = role.stream().filter(r -> r.getName().equals("ADMIN")).findFirst();
+        return ViewAdminDto.builder().isAdmin(theRole.isPresent()).build();
     }
 }

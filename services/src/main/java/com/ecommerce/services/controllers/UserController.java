@@ -67,4 +67,9 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/view")
+    public ResponseEntity<?> viewAdmin(@RequestAttribute String username){
+        var res = userService.viewAdmin(username);
+        return ResponseEntity.ok().body(res);
+    }
 }
