@@ -29,7 +29,7 @@ public class Carrito {
     private Double totalPrice;
     @ManyToOne
     @JoinColumn(name = "id_product")
-    @JsonIgnoreProperties({"category", "productDescription"})
+    @JsonIgnoreProperties({"category", "productDescription", "updateAt"})
     private Products products;
     @ManyToOne
     @JoinColumn(name = "id_user")
