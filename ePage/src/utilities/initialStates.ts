@@ -39,7 +39,9 @@ export const initialState:InitialSateHome = {
     products: [],
     oneCategory: initialCategory,
     oneProduct: initialOneProduct,
-    message:''
+    message: '',
+    isAdmin: false,
+    carrito: []
 }
 
 

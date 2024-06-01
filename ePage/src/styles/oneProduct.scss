@@ -65,6 +65,10 @@
                     width: 100%;
                     flex-direction: column;
                     margin-top: 1rem;
+                    .message{
+                        font-size: 1.2rem;
+                        color: $outrageous-orange-800;
+                    }
                     button{
                         padding:0.5rem 0;
                         font-size: 1.2rem;

@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
-import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer } from "./extraReducer/userExtraReducers";
+import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer, viewAdmninExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
 import { readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
+import { carritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
 
 
 const commereSlice = createSlice({
@@ -53,10 +54,16 @@ const commereSlice = createSlice({
             storageLogin.save(action.payload.token);
             state.message = '';
         });
-
         builder.addCase(registerExtraReducer.rejected, (state, action)=>{
             state.token="";
             state.message = action.error.message as string;
+        });
+
+        builder.addCase(viewAdmninExtraReducer.fulfilled, (state, acion)=>{
+            state.isAdmin = acion.payload.isAdmin;
+        });
+        builder.addCase(viewAdmninExtraReducer.rejected, (state)=>{
+            state.isAdmin = false;
         });
 
         //------Categories--------
@@ -89,6 +96,17 @@ const commereSlice = createSlice({
             state.oneProduct = initialOneProduct;
         });
         
+        //-----Carrito------
+        builder.addCase(carritoExtraReducer.fulfilled, (state, acion)=>{
+            state.carrito = acion.payload;
+        });
+        builder.addCase(carritoExtraReducer.rejected, (state)=>{
+            state.carrito = [];
+        });
+
+        builder.addCase(setCarritoExtraReducer.fulfilled, ()=>{
+           
+        });
     }
 });
 

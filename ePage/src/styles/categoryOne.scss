@@ -60,22 +60,16 @@
                 h3 {
                     color: $outrageous-orange-950;
                     cursor: pointer;
-
+                    width: fit-content;
                     &:hover {
-                        transform: scale(1.05);
+                        background: rgba(128, 128, 128, 0.199);
                         cursor: pointer;
                     }
                 }
 
                 span {
                     color: $outrageous-orange-900;
-
-                    &.category {
-                        &:hover {
-                            transform: scale(1.05);
-                            cursor: pointer;
-                        }
-                    }
+                    width: fit-content;
 
                     &.fecha {
                         margin-top: 0.8rem;

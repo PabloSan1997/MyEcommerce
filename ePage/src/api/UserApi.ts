@@ -44,4 +44,14 @@ export class UserApi{
         if(!ft.ok) throw await ft.json();
         return ft.json();
     }
+    async viewAdmin(token:string):Promise<ViewAdmin>{
+        const ft = await fetch(`${apiConfig.url}/api/user/view`, {
+            method:'GET',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(!ft.ok) throw await ft.json();
+        return ft.json();
+    }
 }

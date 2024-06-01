@@ -10,7 +10,7 @@ export const apiConfig = {
         'Authorization':`Bearer ${token}`
     }),
     contentTypeAuth:(token:string)=>({
-        'Conent-Type':'application/json',
+        'Content-Type':'application/json',
         'Authorization':`Bearer ${token}`
     })
 }

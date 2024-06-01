@@ -43,4 +43,5 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
+    
 }

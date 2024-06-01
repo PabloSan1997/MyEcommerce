@@ -1,15 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { commersActions } from "../splice/commerSlice";
 import { stringRoutes } from "../utilities/routes";
 import '../styles/header.scss';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { viewAdmninExtraReducer } from "../splice/extraReducer/userExtraReducers";
 
 export default function Header() {
     const dispatch = useAppDispatch();
     const state = useAppSelector(state => state.commerseReducer);
     const [show, setShow] = useState(false);
+
+    useEffect(()=>{
+        dispatch(viewAdmninExtraReducer({token:state.token}));
+    },[state.token]);
+
     return (
         <header>
             <h1>Mi Tienda</h1>
@@ -29,6 +36,7 @@ export default function Header() {
                                         onMouseLeave={()=>setShow(false)}
                                         >
                                             <Link className="car op" to={stringRoutes.carrito}>Carrito <ShoppingCartIcon className="carrito"/></Link>
+                                            {state.isAdmin?<button className="op">Admin</button>:null}
                                             <button className="op" onClick={() => dispatch(commersActions.logout())}>Logout</button>
                                         </ul>
                                     ) : null

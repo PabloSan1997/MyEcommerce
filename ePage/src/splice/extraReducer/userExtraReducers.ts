@@ -32,7 +32,7 @@ export const loginExtraReducer = createAsyncThunk(
 
 export const registerExtraReducer = createAsyncThunk(
     'extraReducer/register',
-    async(data:Register)=>{
+    async (data: Register) => {
         try {
             return readApi.register(data);
         } catch (error) {
@@ -41,3 +41,15 @@ export const registerExtraReducer = createAsyncThunk(
         }
     }
 )
+
+export const viewAdmninExtraReducer = createAsyncThunk(
+    'extraReducer/viewAdmin',
+    async ({ token }: { token: string }) => {
+        try {
+            return readApi.viewAdmin(token);
+        } catch (error) {
+            const { message } = error as ErrorDto;
+            throw { message };
+        }
+    }
+);

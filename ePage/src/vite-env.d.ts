@@ -1,28 +1,34 @@
 /// <reference types="vite/client" />
 
+type ViewAdmin = {
+    isAdmin: boolean
+}
+
 type InitialSateHome = {
     token: string,
     userInfo: {
         eamil: string,
         name: string
     }
-    categories:CaterogyResponse[],
-    products:ProductResponse[],
-    oneCategory:OneCategoryResponse,
-    oneProduct:OneProduct,
-    message:string
+    categories: CaterogyResponse[],
+    products: ProductResponse[],
+    oneCategory: OneCategoryResponse,
+    oneProduct: OneProduct,
+    message: string,
+    isAdmin: boolean,
+    carrito:CarritoRespnse[]
 }
 
 type InitialStateFomrs = {
-    login:LoginRequest,
-    register:Register,
-    carrito:PostCarrito,
-    pCarrito:{
-        total:number
+    login: LoginRequest,
+    register: Register,
+    carrito: PostCarrito,
+    pCarrito: {
+        total: number
     },
-    category:AddCategory,
+    category: AddCategory,
     product: AddProduct,
-    putProduct:PutProduct
+    putProduct: PutProduct
 }
 
 //------USER-------
@@ -95,6 +101,7 @@ interface CategoryProduct {
     createAt: string;
 }
 
+
 interface Category {
     id: number;
     name: string;
@@ -141,12 +148,38 @@ interface ProductDescription {
     updateAt: string;
 }
 
-interface PostCarrito{
-    total:number,
-	productId:number
+interface PostCarrito {
+    total: number,
+    productId: number
 }
 
 //---------children-------
 type Children = {
-    children:JSX.Element|JSX.Element[]
+    children: JSX.Element | JSX.Element[]
+}
+
+//-------carrito-------
+
+interface SetCarrito {
+    total: number,
+    productId: number
+}
+
+interface PatchCarrito {
+    total: number;
+}
+
+interface CarritoRespnse {
+    id: number;
+    total: number;
+    price: number;
+    createAt: Date;
+    updateAt: Date;
+    totalPrice: number;
+    products: CategoryProduct;
+    user: {
+        eamil: string,
+        name: string,
+        id: number
+    };
 }
