@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 @Data
@@ -40,12 +41,17 @@ public class Carrito {
     public void prePersist() {
         updateAt = new Date();
         createAt = new Date();
-        totalPrice = price * total;
+        totalPrice = roundedNum(price * total);
     }
 
     @PreUpdate
     public void preUpdate() {
         updateAt = new Date();
-        totalPrice = price * total;
+        totalPrice = roundedNum(price * total);
+    }
+    private double roundedNum(double num){
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String result = decimalFormat.format(num);
+        return Double.parseDouble(result);
     }
 }

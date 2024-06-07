@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CarritoRepository extends CrudRepository<Carrito, Long> {
 
-    @Query("select u from Carrito u where u.user.email = ?1")
+    @Query("select u from Carrito u where u.user.email = ?1 order by u.id")
     List<Carrito> findByEmailUser(String email);
 
     @Query("select c from Carrito c where c.user.id = ?1 and c.products.id = ?2")
