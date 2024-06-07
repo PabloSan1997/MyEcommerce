@@ -27,3 +27,15 @@ export const setCarritoExtraReducer = createAsyncThunk(
         }
     }
 );
+
+export const editCarritoExtraReducer = createAsyncThunk(
+    'extraReducrer/editCarrito',
+    async ({ token, carrito, id }: { token: string, carrito: PatchCarrito, id:number}) => {
+        try {
+            return readApi.editCarrito(token, carrito, id);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);

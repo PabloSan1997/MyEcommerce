@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { carritoExtraReducer } from "../splice/extraReducer/carritoExtraReducer";
 import { OneCarrito } from "../components/OneCarrito";
-
+import '../styles/carrito.scss';
 
 export function Carritos() {
     const dispatch = useAppDispatch();

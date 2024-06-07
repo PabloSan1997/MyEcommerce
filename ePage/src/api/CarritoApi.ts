@@ -25,4 +25,16 @@ export class CarritoApi {
         if (ft.ok) return ft.json();
         throw await ft.json();
     }
+    async editCarrito(token:string, data:PatchCarrito, id:number):Promise<CarritoRespnse>{
+        const ft = await fetch(`${apiConfig.url}/api/user/carrito/${id}`, {
+            method: 'PATCH',
+            headers: {
+                ...apiConfig.contentTypeAuth(token)
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (ft.ok) return ft.json();
+        throw await ft.json();
+    }
 }
