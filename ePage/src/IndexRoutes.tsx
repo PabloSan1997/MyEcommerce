@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import { readInfoUserExtraReducer } from './splice/extraReducer/userExtraReducers';
 import { OneCategory } from './layouts/OneCategory';
 import { OneProduct } from './layouts/OneProduct';
+import { EditProduct } from './layouts/EditProduct';
+import { Admin } from './layouts/Admin';
 
 function Redirect() {
     const token = useAppSelector(state => state.commerseReducer.token);
@@ -68,17 +70,33 @@ const Routes = () => useRoutes([
     },
     {
         path: stringRoutes.category,
-        element:(
+        element: (
             <Viewtoken>
-                <OneCategory/>
+                <OneCategory />
             </Viewtoken>
         )
     },
     {
-        path:stringRoutes.oneProduct,
-        element:(
+        path: stringRoutes.oneProduct,
+        element: (
             <Viewtoken>
-                <OneProduct/>
+                <OneProduct />
+            </Viewtoken>
+        )
+    },
+    {
+        path: stringRoutes.editProduct,
+        element: (
+            <Viewtoken>
+                <EditProduct />
+            </Viewtoken>
+        )
+    },
+    {
+        path: stringRoutes.adminmode,
+        element: (
+            <Viewtoken>
+                <Admin />
             </Viewtoken>
         )
     }

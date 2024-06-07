@@ -84,7 +84,9 @@ export const initialStateFomrs:InitialStateFomrs = {
         urlImage: "",
         description: "",
         specifications: "",
-        imagenes: [],
-        category: ""
+        image1: '',
+        image2: '',
+        category: "",
+        image3: ""
     }
 }

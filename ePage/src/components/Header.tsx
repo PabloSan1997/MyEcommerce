@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import { viewAdmninExtraReducer } from "../splice/extraReducer/userExtraReducers";
 
+
 export default function Header() {
     const dispatch = useAppDispatch();
     const state = useAppSelector(state => state.commerseReducer);
@@ -39,7 +40,9 @@ export default function Header() {
                                                 className="car op"
                                                 to={stringRoutes.carrito}
                                             >Carrito <ShoppingCartIcon className="carrito" /></Link>
-                                            {state.isAdmin ? <button className="op">Admin</button> : null}
+                                            {state.isAdmin ?
+                                                <Link to={stringRoutes.adminmode} className="op">Admin</Link>
+                                                : null}
                                             <button
                                                 className="op"
                                                 onClick={() => dispatch(commersActions.logout())}

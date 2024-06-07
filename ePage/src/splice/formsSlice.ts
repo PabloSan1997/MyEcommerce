@@ -27,7 +27,7 @@ const formSlice = createSlice({
         escribirProduct:(state, action:PayloadAction<AddProduct>)=>{
             state.product = action.payload;
         },
-        escribirPutProduct:(state, action:PayloadAction<PutProduct>)=>{
+        escribirPutProduct:(state, action:PayloadAction<PutFormProduct>)=>{
             state.putProduct = action.payload;
         },
         escribirCarrito:(state, action:PayloadAction<PostCarrito>)=>{

@@ -7,5 +7,7 @@ export const stringRoutes = {
     carrito:'/carrito',
     category:'/category',
     product:'/product',
-    oneProduct:'/product/:id'
+    oneProduct:'/product/:id',
+    editProduct:'/product/edit',
+    adminmode:'/admin'
 }

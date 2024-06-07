@@ -1,76 +1,115 @@
 @import 'colors.scss';
 
-.one_product_container{
+.one_product_container {
     width: 95%;
-    margin:1rem auto;
+    margin: 1rem auto;
     background: $outrageous-orange-50;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.418);
+    box-shadow: 1px 1px 2px rgba(56, 51, 51, 0.418);
     border-radius: 0.5rem;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
-    .superior{
+    position: relative;
+    .edit_option {
+        width: fit-content;
+        position: absolute;
+        right: 1rem;
+        top:1rem;
+        padding: 0.2rem 0.5rem;
+        border: 2px solid $outrageous-orange-900;
+        border-radius: 0.5rem;
+        background: $outrageous-orange-100;
+        cursor: pointer;
+        &:hover{
+            background: $outrageous-orange-200;
+        }
+        .text_option{
+            font-size: 1.2rem;
+            color: $outrageous-orange-800;
+        }
+        .icono_pencil {
+            color: $outrageous-orange-900;
+            width: 1rem;
+        }
+    }
+
+    .superior {
         display: flex;
-        .pro{
-            &.der{
+
+        .pro {
+            &.der {
                 width: 60%;
                 display: flex;
-                .main_image{
+
+                .main_image {
                     width: 70%;
-                    margin:0 auto auto auto;
+                    margin: 0 auto auto auto;
                 }
-                .imagenes{
+
+                .imagenes {
                     width: 20%;
                     display: flex;
                     flex-direction: column;
-                    img{
+
+                    img {
                         width: 100%;
                         margin-bottom: 1rem;
                         border: 2px solid rgba(0, 0, 0, 0);
-                        &:hover{
+
+                        &:hover {
                             cursor: pointer;
                             transform: scale(1.05);
                         }
-                        &.img_select{
+
+                        &.img_select {
                             border: 2px solid $outrageous-orange-900;
                         }
                     }
                 }
-                
+
             }
-            &.izq{
+
+            &.izq {
                 display: flex;
                 flex-direction: column;
-                h2{
+
+                h2 {
                     color: $outrageous-orange-950;
                     font-size: 2.5rem;
                 }
-                span{
+
+                span {
                     color: $outrageous-orange-950;
                 }
-                .price{
+
+                .price {
                     font-size: 1.8rem;
                     color: $outrageous-orange-900;
                 }
-                .category{
+
+                .category {
                     font-size: 1.5rem;
                     color: $outrageous-orange-800;
                 }
-                .description{
+
+                .description {
                     font-size: 1.2rem;
                     color: $outrageous-orange-950;
                 }
-                .buttons_area{
+
+                .buttons_area {
                     display: flex;
                     width: 100%;
                     flex-direction: column;
                     margin-top: 1rem;
-                    .message{
+
+                    .message {
                         font-size: 1.2rem;
                         color: $outrageous-orange-800;
                     }
-                    button{
-                        padding:0.5rem 0;
+
+                    button {
+                        padding: 0.5rem 0;
                         font-size: 1.2rem;
                         width: 15rem;
                         margin-bottom: 1rem;
@@ -79,20 +118,24 @@
                         border-radius: 0.5rem;
                         cursor: pointer;
                         transition: filter 0.2s ease;
-                        &:hover{
-                            filter:brightness(0.91);
+
+                        &:hover {
+                            filter: brightness(0.91);
                         }
-                        &.comprar{
+
+                        &.comprar {
                             background: $outrageous-orange-200;
                             color: $outrageous-orange-950;
                         }
-                        &.carrito{
+
+                        &.carrito {
                             background: $outrageous-orange-950;
                             color: $outrageous-orange-50;
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            .car{
+
+                            .car {
                                 width: 1.2rem;
                                 margin-left: 0.2rem;
                             }
@@ -102,14 +145,17 @@
             }
         }
     }
-    .inferior{
+
+    .inferior {
         width: 95%;
-        margin:1rem auto 0 auto;
-        h3{
+        margin: 1rem auto 0 auto;
+
+        h3 {
             font-size: 1.8rem;
             color: $outrageous-orange-950;
         }
-        p{
+
+        p {
             font-size: 1.4rem;
             color: $outrageous-orange-950;
         }

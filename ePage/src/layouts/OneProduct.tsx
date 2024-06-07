@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { readOneProductExtraReducer } from '../splice/extraReducer/productExtraReducer';
 import '../styles/oneProduct.scss';
 import { ImagenesArea } from '../components/ImagenesArea';
-import { ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { ShoppingCartIcon, PencilIcon } from '@heroicons/react/24/solid';
 import { setCarritoExtraReducer } from '../splice/extraReducer/carritoExtraReducer';
 import { stringRoutes } from '../utilities/routes';
 
@@ -21,16 +21,22 @@ export function OneProduct() {
     dispatch(readOneProductExtraReducer({ token: state.token, id }));
   }, []);
 
-  const agregarCarrito=()=>{
-    dispatch(setCarritoExtraReducer({token:state.token, carrito:{total:1, productId:id}}))
-    .then(()=>{
-      navigate(stringRoutes.carrito);
-    });
+  const agregarCarrito = () => {
+    dispatch(setCarritoExtraReducer({ token: state.token, carrito: { total: 1, productId: id } }))
+      .then(() => {
+        navigate(stringRoutes.carrito);
+      });
   }
 
   const imagenes = [oneProduct.urlImage, ...oneProduct.productDescription.imagenes];
   return (
     <main className="one_product_container">
+      {state.isAdmin ? (
+        <button className="edit_option" onClick={()=> navigate(`${stringRoutes.editProduct}?id=${id}`)}>
+          <span className="text_option">Edit</span>
+          <PencilIcon className='icono_pencil' />
+        </button>
+      ) : null}
       <section className="superior">
         <ImagenesArea imagenes={imagenes} className='pro der' />
         <div className="pro izq">
@@ -42,9 +48,9 @@ export function OneProduct() {
             {oneProduct.inStock ? (
               <>
                 <button className='comprar'>Comprar</button>
-                <button 
-                className='carrito'
-                onClick={agregarCarrito}
+                <button
+                  className='carrito'
+                  onClick={agregarCarrito}
                 >Agregar a <ShoppingCartIcon className='car' /></button>
               </>
             ) :

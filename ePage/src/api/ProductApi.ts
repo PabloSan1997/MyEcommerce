@@ -23,6 +23,16 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
+    async deleteCategory(token:string, id:number):Promise<CaterogyResponse[]>{
+        const ft = await fetch(`${apiConfig.url}/api/category/${id}`, {
+            method:'DELETE',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(ft.ok) return this.readCategories(token);
+        throw await ft.json();
+    }
     async readProducts(token:string):Promise<ProductResponse[]>{
         const ft = await fetch(`${apiConfig.url}/api/product`, {
             method:'GET',
@@ -43,5 +53,36 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
-    
+    async addProduct(token:string, data:AddProduct):Promise<OneProduct>{
+        const ft = await fetch(`${apiConfig.url}/api/product`,{
+            method:'PORT',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            },
+            body:JSON.stringify(data)
+        });
+        if(ft.ok) return ft.json();
+        throw await ft.json();
+    }
+    async putProduct(token:string, id:number, data:PutProduct):Promise<OneProduct>{
+        const ft = await fetch(`${apiConfig.url}/api/product/${id}`,{
+            method:'PUT',
+            headers:{
+                ...apiConfig.contentTypeAuth(token)
+            },
+            body:JSON.stringify(data)
+        });
+        if(ft.ok) return ft.json();
+        throw await ft.json();
+    }
+    async deleteProduct(token:string, id:number):Promise<void>{
+        const ft = await fetch(`${apiConfig.url}/api/product/${id}`,{
+            method:'DELETE',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(ft.ok) return;
+        throw await ft.json();
+    }
 }

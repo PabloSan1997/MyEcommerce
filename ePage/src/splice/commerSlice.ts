@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
 import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer, viewAdmninExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
-import { readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
+import { deleteCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
 import { carritoExtraReducer, deleteCarritoExtraReducer, editCarritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
 
 
@@ -80,6 +80,9 @@ const commereSlice = createSlice({
         builder.addCase(readOneCategoryExtraReducer.rejected, (state) => {
             state.oneCategory = initialCategory;
         });
+        builder.addCase(deleteCategoryExtraReducer.fulfilled, (state, action)=>{
+            state.categories = action.payload;
+        });
 
         //-----Products-----
         builder.addCase(readProductsExtraReducer.fulfilled, (state, action: PayloadAction<ProductResponse[]>) => {
@@ -96,6 +99,9 @@ const commereSlice = createSlice({
             state.oneProduct = initialOneProduct;
         });
 
+        builder.addCase(editProductExtraReducer.fulfilled, ()=>{
+             window.location.hash = '/home';
+        });
         //-----Carrito------
         builder.addCase(carritoExtraReducer.fulfilled, (state, acion) => {
             state.carrito = acion.payload;
