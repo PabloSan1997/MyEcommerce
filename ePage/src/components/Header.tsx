@@ -13,9 +13,9 @@ export default function Header() {
     const state = useAppSelector(state => state.commerseReducer);
     const [show, setShow] = useState(false);
 
-    useEffect(()=>{
-        dispatch(viewAdmninExtraReducer({token:state.token}));
-    },[state.token]);
+    useEffect(() => {
+        dispatch(viewAdmninExtraReducer({ token: state.token }));
+    }, [state.token]);
 
     return (
         <header>
@@ -27,17 +27,23 @@ export default function Header() {
                             <nav className="inside">
                                 <Link to={stringRoutes.home}>Home</Link>
                                 <span
-                                onMouseEnter={()=>setShow(true)}
+                                    onMouseEnter={() => setShow(true)}
                                 >{state.userInfo.name}</span>
                                 {
                                     show ? (
-                                        <ul 
-                                        className="my_menu"
-                                        onMouseLeave={()=>setShow(false)}
+                                        <ul
+                                            className="my_menu"
+                                            onMouseLeave={() => setShow(false)}
                                         >
-                                            <Link className="car op" to={stringRoutes.carrito}>Carrito <ShoppingCartIcon className="carrito"/></Link>
-                                            {state.isAdmin?<button className="op">Admin</button>:null}
-                                            <button className="op" onClick={() => dispatch(commersActions.logout())}>Logout</button>
+                                            <Link
+                                                className="car op"
+                                                to={stringRoutes.carrito}
+                                            >Carrito <ShoppingCartIcon className="carrito" /></Link>
+                                            {state.isAdmin ? <button className="op">Admin</button> : null}
+                                            <button
+                                                className="op"
+                                                onClick={() => dispatch(commersActions.logout())}
+                                            >Logout</button>
                                         </ul>
                                     ) : null
                                 }

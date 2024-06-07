@@ -11,13 +11,16 @@ export function Carritos() {
     useEffect(() => {
         dispatch(carritoExtraReducer({ token: state.token }));
     }, []);
-
     return (
         <div className="carritos">
             <h2>Mi carrito</h2>
-            {state.carrito.map(c => (
-                <OneCarrito key={c.id} {...c}/>
-            ))}
+            {state.carrito.length === 0 ? (
+                <p className="no_elements">No cuentas con elementos a comprar</p>
+            ) :
+                state.carrito.map(c => (
+                    <OneCarrito key={c.id} {...c} />
+                ))
+            }
         </div>
     );
 }

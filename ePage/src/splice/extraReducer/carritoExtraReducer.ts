@@ -39,3 +39,15 @@ export const editCarritoExtraReducer = createAsyncThunk(
         }
     }
 );
+
+export const deleteCarritoExtraReducer = createAsyncThunk(
+    'extraReducer/deleteCarrito',
+    async ({ token, id }: { token: string, id:number}) => {
+        try {
+            return readApi.deleteCarrito(token, id);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);

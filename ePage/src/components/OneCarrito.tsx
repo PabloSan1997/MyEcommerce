@@ -1,22 +1,26 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { editCarritoExtraReducer } from "../splice/extraReducer/carritoExtraReducer";
-
+import { deleteCarritoExtraReducer, editCarritoExtraReducer } from "../splice/extraReducer/carritoExtraReducer";
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 export function OneCarrito({ total, price, products, totalPrice, id }: CarritoRespnse) {
   const { name, urlImage } = products;
   const [num, setNum] = useState(1);
   const dispatch = useAppDispatch();
   const token = useAppSelector(state => state.commerseReducer.token);
-  const cambiar = (e:FormEvent<HTMLFormElement>) => {
+  const chancheCar = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(editCarritoExtraReducer({token, id, carrito:{total:num}}));
+  }
+  const eliminar = () => {
+    dispatch(deleteCarritoExtraReducer({token, id}));
   }
   useEffect(() => {
     setNum(total);
   }, [total]);
   return (
     <div className="carrito_option">
+      <TrashIcon className="trash" onClick={eliminar}/>
       <img src={urlImage} alt={name} />
       <div className="area_texto">
         <h3>{name}</h3>
@@ -24,7 +28,7 @@ export function OneCarrito({ total, price, products, totalPrice, id }: CarritoRe
         <div className="area_info">
           <span className="price">Precio: ${price}</span>
           <span className="total_price">Total a pagar: ${totalPrice}</span>
-          <form onSubmit={cambiar}>
+          <form onSubmit={chancheCar}>
             <label htmlFor="tot">Total</label>
             <input 
             type="number" 

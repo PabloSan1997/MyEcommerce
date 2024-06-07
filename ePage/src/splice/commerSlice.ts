@@ -3,7 +3,7 @@ import { initialCategory, initialOneProduct, initialState } from "../utilities/i
 import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer, viewAdmninExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
 import { readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
-import { carritoExtraReducer, editCarritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
+import { carritoExtraReducer, deleteCarritoExtraReducer, editCarritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
 
 
 const commereSlice = createSlice({
@@ -112,7 +112,12 @@ const commereSlice = createSlice({
             const id = action.payload.id;
             const index = state.carrito.findIndex(c => c.id === id);
             state.carrito[index] = action.payload;
-        })
+        });
+
+        builder.addCase(deleteCarritoExtraReducer.fulfilled, (state, action)=>{
+            const id = action.payload.id;
+            state.carrito = state.carrito.filter(c => c.id !== id);
+        });
     }
 });
 

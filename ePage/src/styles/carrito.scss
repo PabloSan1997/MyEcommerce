@@ -6,17 +6,36 @@
     margin: 1rem auto;
     display: flex;
     flex-direction: column;
+    .no_elements{
+        color: $outrageous-orange-900;
+        font-size: 1.2rem;
+        margin: auto;
+    }
     h2{
         margin-bottom: 1rem;
         font-size: 1.8rem;
         color: $outrageous-orange-950;
     }
     .carrito_option{
+        border-radius: 0.8rem;
         display: flex;
         margin-bottom: 1.2rem;
         padding: 1rem;
         border: 2px solid $outrageous-orange-900;
         background: $outrageous-orange-100;
+        position: relative;
+        .trash{
+            color: $outrageous-orange-500;
+            position: absolute;
+            width: 2rem;
+            right: 10px;
+            transition: color 0.2s ease;
+            top:0.5rem;
+            &:hover{
+                color: $outrageous-orange-900;
+                cursor: pointer;
+            }
+        }
         .area_texto{
             display: flex;
             flex-direction: column;
