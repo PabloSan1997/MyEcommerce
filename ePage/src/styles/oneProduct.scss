@@ -90,6 +90,12 @@
                 .category {
                     font-size: 1.5rem;
                     color: $outrageous-orange-800;
+                    cursor: pointer;
+                    width: fit-content;
+                    &:hover{
+                        color: $outrageous-orange-900;
+                        background: $outrageous-orange-100;
+                    }
                 }
 
                 .description {

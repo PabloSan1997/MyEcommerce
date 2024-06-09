@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
 import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer, viewAdmninExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
-import { deleteCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
+import { addCategoryExtraReducer, addNewProdcuctExtraRedeucer, deleteCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
 import { carritoExtraReducer, deleteCarritoExtraReducer, editCarritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
 
 
@@ -80,10 +80,17 @@ const commereSlice = createSlice({
         builder.addCase(readOneCategoryExtraReducer.rejected, (state) => {
             state.oneCategory = initialCategory;
         });
-        builder.addCase(deleteCategoryExtraReducer.fulfilled, (state, action)=>{
+        builder.addCase(deleteCategoryExtraReducer.fulfilled, (state, action) => {
             state.categories = action.payload;
         });
 
+        builder.addCase(addCategoryExtraReducer.fulfilled, (state)=>{
+            window.location.hash = '/home';
+            state.message = '';
+        });
+        builder.addCase(addCategoryExtraReducer.rejected, (state, action)=>{
+            state.message = action.error.message as string;
+        });
         //-----Products-----
         builder.addCase(readProductsExtraReducer.fulfilled, (state, action: PayloadAction<ProductResponse[]>) => {
             state.products = action.payload;
@@ -99,8 +106,12 @@ const commereSlice = createSlice({
             state.oneProduct = initialOneProduct;
         });
 
-        builder.addCase(editProductExtraReducer.fulfilled, ()=>{
-             window.location.hash = '/home';
+        builder.addCase(editProductExtraReducer.fulfilled, () => {
+            window.location.hash = '/home';
+        });
+
+        builder.addCase(addNewProdcuctExtraRedeucer.fulfilled, () => {
+            window.location.hash = '/home';
         });
         //-----Carrito------
         builder.addCase(carritoExtraReducer.fulfilled, (state, acion) => {
@@ -111,7 +122,7 @@ const commereSlice = createSlice({
         });
 
         builder.addCase(setCarritoExtraReducer.fulfilled, () => {
-
+            
         });
 
         builder.addCase(editCarritoExtraReducer.fulfilled, (state, action) => {
@@ -120,7 +131,7 @@ const commereSlice = createSlice({
             state.carrito[index] = action.payload;
         });
 
-        builder.addCase(deleteCarritoExtraReducer.fulfilled, (state, action)=>{
+        builder.addCase(deleteCarritoExtraReducer.fulfilled, (state, action) => {
             const id = action.payload.id;
             state.carrito = state.carrito.filter(c => c.id !== id);
         });

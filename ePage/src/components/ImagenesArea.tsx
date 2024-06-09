@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 
 export  function ImagenesArea({imagenes, className}:{imagenes:string[], className:string}) {
     const theImages = imagenes.map((im, id) => ({url:im, id}));
-    const [imageSelect, setImageSelect] = useState({id:0, url:''});
+    const [imageSelect, setImageSelect] = useState(theImages[0]?theImages[0]:{url:'', id:0});
     useEffect(()=>{
         setImageSelect(theImages[0]);
-    },[imagenes.length]);
+    },[imagenes[0]]);
     
    
   return (

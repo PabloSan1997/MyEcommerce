@@ -23,6 +23,17 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
+    async addCategory(token:string, category:AddCategory){
+        const ft = await fetch(`${apiConfig.url}/api/category`, {
+            method:'POST',
+            headers:{
+                ...apiConfig.contentTypeAuth(token)
+            },
+            body:JSON.stringify(category)
+        });
+        if(ft.ok) return ft.json();
+        throw await ft.json();
+    }
     async deleteCategory(token:string, id:number):Promise<CaterogyResponse[]>{
         const ft = await fetch(`${apiConfig.url}/api/category/${id}`, {
             method:'DELETE',
@@ -55,9 +66,9 @@ export class ProductApi{
     }
     async addProduct(token:string, data:AddProduct):Promise<OneProduct>{
         const ft = await fetch(`${apiConfig.url}/api/product`,{
-            method:'PORT',
+            method:'POST',
             headers:{
-                ...apiConfig.contentAuth(token)
+                ...apiConfig.contentTypeAuth(token)
             },
             body:JSON.stringify(data)
         });

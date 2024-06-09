@@ -27,7 +27,7 @@ type InitialStateFomrs = {
         total: number
     },
     category: AddCategory,
-    product: AddProduct,
+    product: AddFormProduct,
     putProduct: PutFormProduct
 }
 
@@ -123,11 +123,7 @@ interface AddProduct {
     category: string;
 }
 
-interface PutProduct extends AddProduct {
-    inStock: boolean;
-}
-
-interface PutFormProduct{
+interface AddFormProduct{
     name: string;
     price: number;
     urlImage: string;
@@ -137,6 +133,13 @@ interface PutFormProduct{
     image2:string;
     image3:string;
     category: string;
+}
+
+interface PutProduct extends AddProduct {
+    inStock: boolean;
+}
+
+interface PutFormProduct extends AddFormProduct{
     inStock: boolean;
 }
 

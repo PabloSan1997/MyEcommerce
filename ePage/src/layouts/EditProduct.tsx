@@ -22,8 +22,8 @@ export function EditProduct() {
             urlImage: theproduct.urlImage,
             description: theproduct.description,
             specifications: theproduct.description,
-            imagenes:[theproduct.image1, theproduct.image2, theproduct.image3],
-            category:theproduct.category,
+            imagenes: [theproduct.image1, theproduct.image2, theproduct.image3],
+            category: theproduct.category,
             inStock: theproduct.inStock
         }
         dispatch(editProductExtraReducer({ id, token, data }));
@@ -127,7 +127,10 @@ export function EditProduct() {
                 checked={theproduct.inStock}
                 onChange={e => dispatch(formActions.escribirPutProduct({ ...theproduct, inStock: e.target.checked }))}
             />
-            <button type="submit">Agregar</button>
+            <div className="area_buttons">
+                <button type="submit">Agregar</button>
+                <button type="button">Eliminar Producto</button>
+            </div>
         </form>
     );
 }

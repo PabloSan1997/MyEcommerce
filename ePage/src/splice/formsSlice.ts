@@ -24,7 +24,7 @@ const formSlice = createSlice({
         escribirCategory:(state, action:PayloadAction<AddCategory>)=>{
             state.category = action.payload;
         },
-        escribirProduct:(state, action:PayloadAction<AddProduct>)=>{
+        escribirProduct:(state, action:PayloadAction<AddFormProduct>)=>{
             state.product = action.payload;
         },
         escribirPutProduct:(state, action:PayloadAction<PutFormProduct>)=>{

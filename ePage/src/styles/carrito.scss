@@ -60,7 +60,7 @@
                         margin-right: 0.5rem;
                     }
                     input{
-                        width: 2.5rem;
+                        width: 3rem;
                         padding: 0.2rem;
                         font-size: 1rem;
                         outline: none;
@@ -94,6 +94,11 @@
         }
         img{
             width: 20%;
+            transition: transform 0.1s ease;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.1);
+            }
         }
     }
 }

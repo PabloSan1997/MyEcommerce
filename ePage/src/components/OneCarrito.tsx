@@ -2,9 +2,12 @@ import { FormEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { deleteCarritoExtraReducer, editCarritoExtraReducer } from "../splice/extraReducer/carritoExtraReducer";
 import { TrashIcon } from '@heroicons/react/24/solid';
+import { useNavigate } from "react-router-dom";
+import { stringRoutes } from "../utilities/routes";
 
 export function OneCarrito({ total, price, products, totalPrice, id }: CarritoRespnse) {
-  const { name, urlImage } = products;
+  const navigate = useNavigate();
+  const { name, urlImage} = products;
   const [num, setNum] = useState(1);
   const dispatch = useAppDispatch();
   const token = useAppSelector(state => state.commerseReducer.token);
@@ -21,7 +24,7 @@ export function OneCarrito({ total, price, products, totalPrice, id }: CarritoRe
   return (
     <div className="carrito_option">
       <TrashIcon className="trash" onClick={eliminar}/>
-      <img src={urlImage} alt={name} />
+      <img src={urlImage} alt={name} onClick={()=>navigate(`${stringRoutes.product}/${products.id}`)}/>
       <div className="area_texto">
         <h3>{name}</h3>
         <p>{}</p>

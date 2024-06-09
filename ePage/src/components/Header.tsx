@@ -33,6 +33,7 @@ export default function Header() {
                                 {
                                     show ? (
                                         <ul
+                                            onClick={()=> setShow(false)}
                                             className="my_menu"
                                             onMouseLeave={() => setShow(false)}
                                         >

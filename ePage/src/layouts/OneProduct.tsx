@@ -32,7 +32,7 @@ export function OneProduct() {
   return (
     <main className="one_product_container">
       {state.isAdmin ? (
-        <button className="edit_option" onClick={()=> navigate(`${stringRoutes.editProduct}?id=${id}`)}>
+        <button className="edit_option" onClick={() => navigate(`${stringRoutes.editProduct}?id=${id}`)}>
           <span className="text_option">Edit</span>
           <PencilIcon className='icono_pencil' />
         </button>
@@ -42,7 +42,10 @@ export function OneProduct() {
         <div className="pro izq">
           <h2>{oneProduct.name}</h2>
           <span className='price'>${oneProduct.price}</span>
-          <span className='category'>{oneProduct.category.name}</span>
+          <span 
+            className='category'
+            onClick={() => navigate(`${stringRoutes.category}?name=${oneProduct.category.name}`)}
+          >{oneProduct.category.name}</span>
           <p className="description">{oneProduct.productDescription.description}</p>
           <div className="buttons_area">
             {oneProduct.inStock ? (

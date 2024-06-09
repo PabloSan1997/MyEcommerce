@@ -64,11 +64,35 @@ export const readOneProductExtraReducer = createAsyncThunk(
     }
 );
 
+export const addCategoryExtraReducer=createAsyncThunk(
+    'extraReducer/addNewCategory',
+    async({token, category}:{token:string, category:AddCategory})=>{
+        try {
+            return readApi.addCategory(token, category);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);
+
 export const editProductExtraReducer = createAsyncThunk(
     'extraReducer/putProduct',
     async({token, id, data}:{token:string, id:number, data:PutProduct})=>{
         try {
             return readApi.putProduct(token, id, data);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);
+
+export const addNewProdcuctExtraRedeucer = createAsyncThunk(
+    'extraReducer/postProduct',
+    async({token, data}:{token:string, data:AddProduct})=>{
+        try {
+            return readApi.addProduct(token, data);
         } catch (error) {
             const err = error as ErrorDto;
             throw err;

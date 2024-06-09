@@ -14,6 +14,8 @@ import { OneCategory } from './layouts/OneCategory';
 import { OneProduct } from './layouts/OneProduct';
 import { EditProduct } from './layouts/EditProduct';
 import { Admin } from './layouts/Admin';
+import { AddProduct } from './layouts/AddProduct';
+import { AddCategory } from './layouts/AddCategory';
 
 function Redirect() {
     const token = useAppSelector(state => state.commerseReducer.token);
@@ -97,6 +99,22 @@ const Routes = () => useRoutes([
         element: (
             <Viewtoken>
                 <Admin />
+            </Viewtoken>
+        )
+    },
+    {
+        path: stringRoutes.adminAddProduct,
+        element:(
+            <Viewtoken>
+                <AddProduct/>
+            </Viewtoken>
+        )
+    },
+    {
+        path: stringRoutes.addCategory,
+        element:(
+            <Viewtoken>
+                <AddCategory/>
             </Viewtoken>
         )
     }

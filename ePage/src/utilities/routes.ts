@@ -9,5 +9,7 @@ export const stringRoutes = {
     product:'/product',
     oneProduct:'/product/:id',
     editProduct:'/product/edit',
-    adminmode:'/admin'
+    adminmode:'/admin',
+    adminAddProduct:'/admin/newProduct',
+    addCategory:'/admin/newCategory'
 }

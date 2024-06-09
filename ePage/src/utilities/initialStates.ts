@@ -74,8 +74,10 @@ export const initialStateFomrs:InitialStateFomrs = {
         urlImage: "",
         description: "",
         specifications: "",
-        imagenes: [],
-        category: ""
+        category: "",
+        image1: "",
+        image2: "",
+        image3: ""
     },
     putProduct: {
         inStock: false,
