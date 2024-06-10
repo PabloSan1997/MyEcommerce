@@ -2,7 +2,7 @@
 import { FormEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useSearchParams } from 'react-router-dom';
-import { editProductExtraReducer, readCategoriesExtraReducer, readOneProductExtraReducer } from "../splice/extraReducer/productExtraReducer";
+import { deleteOneProductExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneProductExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
 import '../styles/productform.scss';
 
@@ -14,6 +14,12 @@ export function EditProduct() {
     const [search] = useSearchParams();
     const id = Number(search.get('id'));
     const categorias = state.categories.map(c => c.name);
+
+    const deleteProduct = () => {
+        if (confirm('¿Seguro que desea borrar el producto?')) {
+            dispatch(deleteOneProductExtraReducer({ token: state.token, id }));
+        }
+    }
 
     const subir = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -133,7 +139,7 @@ export function EditProduct() {
             </div>
             <div className="area_buttons">
                 <button type="submit">Aceptar</button>
-                <button type="button">Eliminar Producto</button>
+                <button type="button" onClick={deleteProduct}>Eliminar Producto</button>
             </div>
         </form>
     );

@@ -111,3 +111,17 @@ export const addNewProdcuctExtraRedeucer = createAsyncThunk(
         }
     }
 );
+
+
+export const deleteOneProductExtraReducer = createAsyncThunk(
+    'extraReducer/deleteProduct',
+    async ({ token, id }: { token: string, id:number}) => {
+        try {
+            return readApi.deleteProduct(token, id);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);
+

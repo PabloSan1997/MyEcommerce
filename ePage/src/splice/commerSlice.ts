@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
 import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer, viewAdmninExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
-import { addCategoryExtraReducer, addNewProdcuctExtraRedeucer, deleteCategoryExtraReducer, editCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
+import { addCategoryExtraReducer, addNewProdcuctExtraRedeucer, deleteCategoryExtraReducer, deleteOneProductExtraReducer, editCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
 import { carritoExtraReducer, deleteCarritoExtraReducer, editCarritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
 
 
@@ -118,6 +118,10 @@ const commereSlice = createSlice({
         builder.addCase(addNewProdcuctExtraRedeucer.fulfilled, () => {
             window.location.hash = '/home';
         });
+
+        builder.addCase(deleteOneProductExtraReducer.fulfilled,()=>{
+            window.location.hash = '/home';
+        })
         //-----Carrito------
         builder.addCase(carritoExtraReducer.fulfilled, (state, acion) => {
             state.carrito = acion.payload;

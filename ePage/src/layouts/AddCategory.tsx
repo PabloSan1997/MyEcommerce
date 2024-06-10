@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import { FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addCategoryExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";

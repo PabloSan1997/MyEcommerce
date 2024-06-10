@@ -28,6 +28,7 @@ export function OneProduct() {
       });
   }
 
+
   const imagenes = [oneProduct.urlImage, ...oneProduct.productDescription.imagenes];
   return (
     <main className="one_product_container">
