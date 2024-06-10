@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { useSearchParams } from 'react-router-dom';
 import { editProductExtraReducer, readCategoriesExtraReducer, readOneProductExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
+import '../styles/productform.scss';
 
 export function EditProduct() {
     const theproduct = useAppSelector(state => state.formReducer.putProduct);
@@ -53,7 +54,7 @@ export function EditProduct() {
 
     return (
         <form className="editProyect form_proyect" onSubmit={subir}>
-            <h2>Editar Producto</h2>
+            <h2 className="titulo_style">Editar Producto</h2>
             <label htmlFor="">Name</label>
             <input
                 className='entrada'
@@ -120,15 +121,18 @@ export function EditProduct() {
                     <option value={o} key={o}>{o}</option>
                 ))}
             </select>
-            <label htmlFor="">Disponible</label>
-            <input
-                type='checkbox'
-                className="disponible"
-                checked={theproduct.inStock}
-                onChange={e => dispatch(formActions.escribirPutProduct({ ...theproduct, inStock: e.target.checked }))}
-            />
+            <div className="check_part">
+                <input
+                    type='checkbox'
+                    id='checkbox'
+                    className="disponible"
+                    checked={theproduct.inStock}
+                    onChange={e => dispatch(formActions.escribirPutProduct({ ...theproduct, inStock: e.target.checked }))}
+                />
+                <label htmlFor="checkbox" id="label">Disponible:</label>
+            </div>
             <div className="area_buttons">
-                <button type="submit">Agregar</button>
+                <button type="submit">Aceptar</button>
                 <button type="button">Eliminar Producto</button>
             </div>
         </form>

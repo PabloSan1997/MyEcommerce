@@ -22,12 +22,14 @@ export function ListAdmiCategory({ id, name, urlImage }: Category) {
   }
 
   const deleteCarrito = () => {
-    dispatch(deleteCategoryExtraReducer({ token: state.token, id }));
+    if (confirm(`¿Desea eliminar categoria: ${name}?`)) {
+      dispatch(deleteCategoryExtraReducer({ token: state.token, id }));
+    }
   }
 
   if (show) return (
     <form onSubmit={subir}>
-      <div className="area_buttons">
+      <div className="area_buttons_forms">
         <label htmlFor="">Nombre</label>
         <input
           type="text"
@@ -52,8 +54,8 @@ export function ListAdmiCategory({ id, name, urlImage }: Category) {
   return (
     <div className="category_list">
       <div className="area_icons">
-        <TrashIcon className="icono" onClick={deleteCarrito} />
         <PencilIcon className="icono" onClick={() => setShow(true)} />
+        <TrashIcon className="icono" onClick={deleteCarrito} />
       </div>
       <span className="category">{name}</span>
     </div>

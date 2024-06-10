@@ -40,7 +40,7 @@ export function OneProduct() {
       <section className="superior">
         <ImagenesArea imagenes={imagenes} className='pro der' />
         <div className="pro izq">
-          <h2>{oneProduct.name}</h2>
+          <h2 className='titulo_style'>{oneProduct.name}</h2>
           <span className='price'>${oneProduct.price}</span>
           <span 
             className='category'
@@ -62,7 +62,7 @@ export function OneProduct() {
         </div>
       </section>
       <section className="inferior">
-        <h3>Especificaciones</h3>
+        <h3 className='titulo_style'>Especificaciones</h3>
         <p className="especificaciones">{oneProduct.productDescription.specifications}</p>
       </section>
     </main>

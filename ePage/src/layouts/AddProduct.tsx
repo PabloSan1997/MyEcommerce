@@ -36,7 +36,7 @@ export function AddProduct() {
     }, [categorias.length])
     return (
         <form className="add_proyect form_proyect" onSubmit={subir}>
-            <h2>Nuevo Producto</h2>
+            <h2 className="titulo_style">Nuevo Producto</h2>
             <label htmlFor="">Name</label>
             <input
                 className='entrada'
@@ -103,7 +103,9 @@ export function AddProduct() {
                     <option value={o} key={o}>{o}</option>
                 ))}
             </select>
-            <button type="submit">Agregar</button>
+            <div className="area_buttons">
+                <button type="submit">Agregar</button>
+            </div>
         </form>
     );
 }
