@@ -11,5 +11,5 @@ public interface CategoryService {
     List<ShowCategoriesDto> findAll();
     Category findByName(String name);
     void deleteCategory(Long id);
-    Category editCategory(Long id, AddCategoryDto categoryDto);
+    ShowCategoriesDto editCategory(Long id, AddCategoryDto categoryDto);
 }

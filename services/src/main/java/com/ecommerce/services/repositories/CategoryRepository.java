@@ -15,4 +15,7 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
     List<ShowCategoriesDto> findAllCategories();
 
     Optional<Category> findByName(String name);
+
+    @Query("select new com.ecommerce.services.models.dtos.ShowCategoriesDto(c.id, c.name, c.urlImage) from Category c where c.name = ?1")
+    Optional<ShowCategoriesDto> findByNameShow(String name);
 }

@@ -63,7 +63,7 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
-    public Category editCategory(Long id, AddCategoryDto categoryDto) {
+    public ShowCategoriesDto editCategory(Long id, AddCategoryDto categoryDto) {
         Category category = categoryRepository.findById(id).orElseThrow(()->{
             throw  new MyBadRequestException("No se puede editar categoría");
         });
@@ -71,6 +71,7 @@ public class CategoryServiceImp implements CategoryService {
         String urlImage = categoryDto.getUrlImage();
         category.setUrlImage(urlImage);
         category.setName(name);
-        return categoryRepository.save(category);
+        Category cate = categoryRepository.save(category);
+        return categoryRepository.findByNameShow(cate.getName()).orElseThrow();
     }
 }
