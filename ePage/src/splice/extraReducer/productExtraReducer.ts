@@ -18,7 +18,7 @@ export const readCategoriesExtraReducer = createAsyncThunk(
 
 export const deleteCategoryExtraReducer = createAsyncThunk(
     'extraReducer/deleteCategory',
-    async ({ token, id }: { token: string, id:number }) => {
+    async ({ token, id }: { token: string, id: number }) => {
         try {
             return readApi.deleteCategory(token, id);
         } catch (error) {
@@ -54,7 +54,7 @@ export const readOneCategoryExtraReducer = createAsyncThunk(
 
 export const readOneProductExtraReducer = createAsyncThunk(
     'extraReducer/readOneProduct',
-    async({token, id}:{token:string, id:number})=>{
+    async ({ token, id }: { token: string, id: number }) => {
         try {
             return readApi.readOneProduct(token, id);
         } catch (error) {
@@ -64,9 +64,9 @@ export const readOneProductExtraReducer = createAsyncThunk(
     }
 );
 
-export const addCategoryExtraReducer=createAsyncThunk(
+export const addCategoryExtraReducer = createAsyncThunk(
     'extraReducer/addNewCategory',
-    async({token, category}:{token:string, category:AddCategory})=>{
+    async ({ token, category }: { token: string, category: AddCategory }) => {
         try {
             return readApi.addCategory(token, category);
         } catch (error) {
@@ -76,9 +76,21 @@ export const addCategoryExtraReducer=createAsyncThunk(
     }
 );
 
+export const editCategoryExtraReducer = createAsyncThunk(
+    'extraReducer/editCategory',
+    async ({ token, category, id }: { token: string, id:number, category: AddCategory }) => {
+        try {
+            return readApi.editCategory(token, id, category);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);
+
 export const editProductExtraReducer = createAsyncThunk(
     'extraReducer/putProduct',
-    async({token, id, data}:{token:string, id:number, data:PutProduct})=>{
+    async ({ token, id, data }: { token: string, id: number, data: PutProduct }) => {
         try {
             return readApi.putProduct(token, id, data);
         } catch (error) {
@@ -90,7 +102,7 @@ export const editProductExtraReducer = createAsyncThunk(
 
 export const addNewProdcuctExtraRedeucer = createAsyncThunk(
     'extraReducer/postProduct',
-    async({token, data}:{token:string, data:AddProduct})=>{
+    async ({ token, data }: { token: string, data: AddProduct }) => {
         try {
             return readApi.addProduct(token, data);
         } catch (error) {

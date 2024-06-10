@@ -44,6 +44,17 @@ export class ProductApi{
         if(ft.ok) return this.readCategories(token);
         throw await ft.json();
     }
+    async editCategory(token:string, id:number, data:AddCategory):Promise<Category[]>{
+        const ft = await fetch(`${apiConfig.url}/api/category/${id}`, {
+            method:'PUT',
+            headers:{
+                ...apiConfig.contentTypeAuth(token)
+            },
+            body:JSON.stringify(data)
+        });
+        if(ft.ok) return this.readCategories(token);
+        throw await ft.json();
+    }
     async readProducts(token:string):Promise<ProductResponse[]>{
         const ft = await fetch(`${apiConfig.url}/api/product`, {
             method:'GET',
