@@ -1,0 +1,20 @@
+@import 'colors.scss';
+
+
+.loading{
+    width: 20rem;
+    height: 20rem;
+    border: 3px solid $outrageous-orange-500;
+    border-top-color: $outrageous-orange-950;
+    border-radius: 100rem;
+    animation: girar 1s infinite  linear;
+    margin:2rem auto;
+}
+
+@keyframes girar {
+    from{
+        transform: rotate(0deg);
+    }to{
+        transform: rotate(360deg);
+    }
+}

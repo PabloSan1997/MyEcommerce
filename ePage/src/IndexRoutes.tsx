@@ -16,6 +16,7 @@ import { EditProduct } from './layouts/EditProduct';
 import { Admin } from './layouts/Admin';
 import { AddProduct } from './layouts/AddProduct';
 import { AddCategory } from './layouts/AddCategory';
+import { Loading } from './components/Loading';
 
 function Redirect() {
     const token = useAppSelector(state => state.commerseReducer.token);
@@ -39,83 +40,121 @@ function Viewtoken({ children }: Children) {
     )
 }
 
+function GenerateLoading({ children }: Children) {
+    const loading = useAppSelector(state => state.commerseReducer.loading);
+    if (loading) return <Loading />
+    return (
+        <>
+            {children}
+        </>
+    );
+}
+
 const Routes = () => useRoutes([
     {
         path: stringRoutes.home,
         element: (
             <>
-                <Viewtoken>
-                    <Home />
-                </Viewtoken>
+                <GenerateLoading>
+                    <Viewtoken>
+                        <Home />
+                    </Viewtoken>
+                </GenerateLoading>
             </>
         )
     },
     {
         path: stringRoutes.login,
-        element: <Login />
+        element: (
+            <GenerateLoading>
+                <Login />
+            </GenerateLoading>
+        )
     },
     {
         path: '/',
-        element: <Redirect />
+        element: (
+            <GenerateLoading>
+                <Redirect />
+            </GenerateLoading>
+        )
     },
     {
         path: stringRoutes.register,
-        element: <Register />
+        element: (
+            <GenerateLoading>
+                <Register />
+            </GenerateLoading>
+        )
     },
     {
         path: stringRoutes.carrito,
         element: (
-            <Viewtoken>
-                <Carritos />
-            </Viewtoken>
+            <GenerateLoading>
+                <Viewtoken>
+                    <Carritos />
+                </Viewtoken>
+            </GenerateLoading>
         )
     },
     {
         path: stringRoutes.category,
         element: (
-            <Viewtoken>
-                <OneCategory />
-            </Viewtoken>
+            <GenerateLoading>
+                <Viewtoken>
+                    <OneCategory />
+                </Viewtoken>
+            </GenerateLoading>
         )
     },
     {
         path: stringRoutes.oneProduct,
         element: (
-            <Viewtoken>
-                <OneProduct />
-            </Viewtoken>
+            <GenerateLoading>
+                <Viewtoken>
+                    <OneProduct />
+                </Viewtoken>
+            </GenerateLoading>
         )
     },
     {
         path: stringRoutes.editProduct,
         element: (
-            <Viewtoken>
-                <EditProduct />
-            </Viewtoken>
+            <GenerateLoading>
+                <Viewtoken>
+                    <EditProduct />
+                </Viewtoken>
+            </GenerateLoading>
         )
     },
     {
         path: stringRoutes.adminmode,
         element: (
-            <Viewtoken>
-                <Admin />
-            </Viewtoken>
+            <GenerateLoading>
+                <Viewtoken>
+                    <Admin />
+                </Viewtoken>
+            </GenerateLoading>
         )
     },
     {
         path: stringRoutes.adminAddProduct,
-        element:(
-            <Viewtoken>
-                <AddProduct/>
-            </Viewtoken>
+        element: (
+            <GenerateLoading>
+                <Viewtoken>
+                    <AddProduct />
+                </Viewtoken>
+            </GenerateLoading>
         )
     },
     {
         path: stringRoutes.addCategory,
-        element:(
-            <Viewtoken>
-                <AddCategory/>
-            </Viewtoken>
+        element: (
+            <GenerateLoading>
+                <Viewtoken>
+                    <AddCategory />
+                </Viewtoken>
+            </GenerateLoading>
         )
     }
 ]);

@@ -16,7 +16,8 @@ type InitialSateHome = {
     oneProduct: OneProduct,
     message: string,
     isAdmin: boolean,
-    carrito:CarritoRespnse[]
+    carrito:CarritoRespnse[],
+    loading:boolean
 }
 
 type InitialStateFomrs = {
