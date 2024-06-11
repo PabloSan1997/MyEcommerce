@@ -1,14 +1,16 @@
 @import 'colors.scss';
 
 
-.admin_mode{
+.admin_mode {
     display: flex;
     flex-direction: column;
-    .area_buttons{
-        margin:2rem auto;
+
+    .area_buttons {
+        margin: 2rem auto;
         display: flex;
         flex-direction: column;
-        .admin_button{
+
+        .admin_button {
             padding: 1rem 1.5rem;
             margin-bottom: 1rem;
             font-size: 1.5rem;
@@ -18,46 +20,105 @@
             border-radius: 0.5rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            &:hover{
+
+            &:hover {
                 background: $outrageous-orange-800;
             }
         }
     }
-    .lista_categorias{
+
+    .form_category_admin {
+        background: $outrageous-orange-100;
+        margin: auto auto 1rem 0;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        border: 2px solid $outrageous-orange-900;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+
+        label {
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        input {
+            &::placeholder{
+                color: $outrageous-orange-700;
+            }
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            padding: 0.2rem;
+            width: 25rem;
+            background: $outrageous-orange-200;
+            border: 1px solid $outrageous-orange-950;
+            border-radius: 0.5rem;
+            outline: none;
+            color: $outrageous-orange-900;
+        }
+
+        .area_buttons_form {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 1rem auto;
+
+            button {
+                margin: auto;
+                background: $outrageous-orange-700;
+                color: $outrageous-orange-50;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    background: $outrageous-orange-800;
+                }
+            }
+        }
+    }
+
+    .lista_categorias {
         width: 95%;
         margin: auto;
         display: flex;
         flex-direction: column;
-        h2{
+
+        h2 {
             color: $outrageous-orange-900;
             font-size: 1.8rem;
             margin-bottom: 1rem;
         }
-        .category_list{
+
+        .category_list {
             min-width: 10rem;
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            margin: auto auto auto 0;
+            margin: auto auto 1rem 0;
             background: $outrageous-orange-100;
-            margin-bottom: 1rem;
             border-radius: 10px;
             border: 2px solid $outrageous-orange-950;
-            .category{
+
+            .category {
                 margin: auto;
                 font-size: 1.5rem;
-                color:$outrageous-orange-950;
+                color: $outrageous-orange-950;
             }
-            .area_icons{
+
+            .area_icons {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
-                .icono{
+
+                .icono {
                     width: 1.2rem;
                     cursor: pointer;
                     color: $outrageous-orange-800;
-                    &:hover{
-                        color:$outrageous-orange-900;
+
+                    &:hover {
+                        color: $outrageous-orange-900;
                     }
                 }
             }

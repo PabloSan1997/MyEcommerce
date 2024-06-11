@@ -28,8 +28,7 @@ export function ListAdmiCategory({ id, name, urlImage }: Category) {
   }
 
   if (show) return (
-    <form onSubmit={subir}>
-      <div className="area_buttons_forms">
+    <form onSubmit={subir} className="form_category_admin">
         <label htmlFor="">Nombre</label>
         <input
           type="text"
@@ -44,11 +43,10 @@ export function ListAdmiCategory({ id, name, urlImage }: Category) {
           value={stateForm.urlImage}
           onChange={e => dispatch(formActions.escribirCategory({ ...stateForm, urlImage: e.target.value }))}
         />
-        <div className="area_buttons">
+        <div className="area_buttons_form">
           <button type="submit">Aceptar</button>
           <button onClick={() => setShow(false)} type="button">Cancelar</button>
         </div>
-      </div>
     </form>
   )
   return (
