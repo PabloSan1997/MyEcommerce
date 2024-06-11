@@ -73,6 +73,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteProduct(Long id) {
         productRepository.findById(id).ifPresentOrElse(p -> {
             productRepository.deleteById(p.getId());
@@ -82,8 +83,10 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    @Transactional
     public Products editProduct(Long id, EditProductDto editProductDto) {
         String sCategory = editProductDto.getCategory();
+
         Category category = categoryRepository.findByName(sCategory).orElseThrow(() -> {
             throw new MyBadRequestException("No se puede editar ese producto");
         });
@@ -102,12 +105,15 @@ public class ProductServiceImp implements ProductService {
         productDescription.setImagenes(imagenes);
         productDescription.setSpecifications(specifications);
 
+
         productDescriptionRepository.save(productDescription);
 
         String name = editProductDto.getName();
         Double price = editProductDto.getPrice();
         Boolean inStock = editProductDto.getInStock();
         String urlImage = editProductDto.getUrlImage();
+
+
 
         product.setName(name);
         product.setPrice(price);

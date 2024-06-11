@@ -43,17 +43,22 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
+    @Transactional
     public Category findByName(String name) {
         Optional<Category> optionalCategory = categoryRepository.findByName(name);
         Category category = optionalCategory.orElseThrow(() -> {
             throw new MyNotFoundException("No se encontró categoría con ese nombre");
         });
-        List<Products> products = productRepository.findByCategory(category.getName());
-        category.setProducts(products);
-        return category;
+        List<Products> products = productRepository.findByCategory(name);
+        return Category.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .urlImage(category.getUrlImage())
+                .products(products).build();
     }
 
     @Override
+    @Transactional
     public void deleteCategory(Long id) {
         categoryRepository.findById(id).ifPresentOrElse(c -> {
             categoryRepository.deleteById(id);
@@ -63,6 +68,7 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
+    @Transactional
     public ShowCategoriesDto editCategory(Long id, AddCategoryDto categoryDto) {
         Category category = categoryRepository.findById(id).orElseThrow(()->{
             throw  new MyBadRequestException("No se puede editar categoría");

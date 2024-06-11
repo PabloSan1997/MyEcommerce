@@ -47,6 +47,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public UserInfoDto findUser(String email) {
         Optional<UserInfoDto> userInfoDto = userRepository.findInfo(email);
         if(userInfoDto.isEmpty()) throw new MyNotFoundException("No se encontro usuario");
@@ -54,6 +55,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public ViewAdminDto viewAdmin(String username) {
         UserEntity user = userRepository.findByEmail(username).orElseThrow(()->{
             throw new MyNotFoundException("No se encontro usuario");
