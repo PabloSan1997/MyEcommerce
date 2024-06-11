@@ -7,20 +7,22 @@ import { stringRoutes } from "../utilities/routes";
 import { useEffect } from "react";
 import { commersActions } from "../splice/commerSlice";
 import '../styles/form.scss';
+import { Loading } from "../components/Loading";
 
 export function Login() {
     const state = useAppSelector(state => state.formReducer.login);
-    const {message, token} = useAppSelector(state => state.commerseReducer);
+    const { message, token, loading } = useAppSelector(state => state.commerseReducer);
     const dispatch = useAppDispatch();
     const submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(loginExtraReducer(state));
         dispatch(formActions.borrar())
     }
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(commersActions.borrarMessage());
-    },[]);
-    if(token) return <Navigate to={stringRoutes.home}/>
+    }, []);
+    if (token) return <Navigate to={stringRoutes.home} />
+    if (loading) return <Loading />
     return (
         <form className="login_form form" onSubmit={submit}>
             <h2>Login</h2>

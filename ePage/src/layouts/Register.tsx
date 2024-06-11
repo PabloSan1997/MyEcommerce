@@ -7,12 +7,13 @@ import { stringRoutes } from "../utilities/routes";
 import React, { useEffect } from "react";
 import { commersActions } from "../splice/commerSlice";
 import { registerExtraReducer } from "../splice/extraReducer/userExtraReducers";
+import { Loading } from "../components/Loading";
 
 export function Register() {
     const state = useAppSelector(state => state.formReducer.register);
     const dispatch = useAppDispatch();
-    const { message, token } = useAppSelector(state => state.commerseReducer);
-
+    const { message, token, loading } = useAppSelector(state => state.commerseReducer);
+    
     useEffect(()=>{
         dispatch(commersActions.borrarMessage());
     },[]);
@@ -23,6 +24,7 @@ export function Register() {
     }
 
     if (token) return <Navigate to={stringRoutes.home} />
+    if (loading) return <Loading />
     return (
         <form className="register_form form" onSubmit={subir}>
             <h2>Register</h2>

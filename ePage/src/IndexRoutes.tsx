@@ -66,9 +66,7 @@ const Routes = () => useRoutes([
     {
         path: stringRoutes.login,
         element: (
-            <GenerateLoading>
-                <Login />
-            </GenerateLoading>
+            <Login />
         )
     },
     {
@@ -82,9 +80,7 @@ const Routes = () => useRoutes([
     {
         path: stringRoutes.register,
         element: (
-            <GenerateLoading>
-                <Register />
-            </GenerateLoading>
+            <Register />
         )
     },
     {
