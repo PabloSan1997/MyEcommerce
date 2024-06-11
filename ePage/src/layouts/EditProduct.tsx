@@ -28,7 +28,7 @@ export function EditProduct() {
             price: theproduct.price,
             urlImage: theproduct.urlImage,
             description: theproduct.description,
-            specifications: theproduct.description,
+            specifications: theproduct.specifications,
             imagenes: [theproduct.image1, theproduct.image2, theproduct.image3],
             category: theproduct.category,
             inStock: theproduct.inStock
@@ -48,7 +48,7 @@ export function EditProduct() {
                 price: oneProduct.price,
                 urlImage: oneProduct.urlImage,
                 description: oneProduct.productDescription.description,
-                specifications: oneProduct.productDescription.description,
+                specifications: oneProduct.productDescription.specifications,
                 image1: oneProduct.productDescription.imagenes[0],
                 image2: oneProduct.productDescription.imagenes[1],
                 image3: oneProduct.productDescription.imagenes[2],

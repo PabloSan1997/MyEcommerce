@@ -16,7 +16,7 @@ export function OneProduct() {
   const state = useAppSelector(state => state.commerseReducer);
   const oneProduct = state.oneProduct;
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     dispatch(readOneProductExtraReducer({ token: state.token, id }));
   }, []);

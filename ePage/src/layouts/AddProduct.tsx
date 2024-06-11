@@ -19,7 +19,7 @@ export function AddProduct() {
             price: theproduct.price,
             urlImage: theproduct.urlImage,
             description: theproduct.description,
-            specifications: theproduct.description,
+            specifications: theproduct.specifications,
             imagenes: [theproduct.image1, theproduct.image2, theproduct.image3],
             category: theproduct.category
         }
