@@ -6,6 +6,7 @@ import { readOneCategoryExtraReducer } from '../splice/extraReducer/productExtra
 import { ProductOptionCategory } from '../components/ProductOptionCategory';
 import '../styles/categoryOne.scss';
 import { CategoryPortada } from '../components/CategoryPortada';
+import { Loading } from '../components/Loading';
 
 export function OneCategory() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ export function OneCategory() {
     }
   }, []);
   const category = state.oneCategory;
+  if(state.loading) return <Loading/>;
   return (
     <div className="category_container">
       <CategoryPortada {...category}/>

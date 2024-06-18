@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { deleteOneProductExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneProductExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
 import '../styles/productform.scss';
+import { Loading } from "../components/Loading";
 
 export function EditProduct() {
     const theproduct = useAppSelector(state => state.formReducer.putProduct);
@@ -57,7 +58,7 @@ export function EditProduct() {
             }));
         }
     }, [oneProduct.name]);
-
+    if(state.loading) return <Loading/>;
     return (
         <form className="editProyect form_proyect" onSubmit={subir}>
             <h2 className="titulo_style">Editar Producto</h2>

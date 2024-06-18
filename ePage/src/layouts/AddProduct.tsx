@@ -5,6 +5,7 @@ import { FormEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addNewProdcuctExtraRedeucer, readCategoriesExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
+import { Loading } from "../components/Loading";
 
 export function AddProduct() {
     const theproduct = useAppSelector(state => state.formReducer.product);
@@ -33,7 +34,9 @@ export function AddProduct() {
         if (categorias.length>0) {
             dispatch(formActions.escribirProduct({ ...theproduct, category: categorias[0] }));
         }
-    }, [categorias.length])
+    }, [categorias.length]);
+
+    if(state.loading) return <Loading/>
     return (
         <form className="add_proyect form_proyect" onSubmit={subir}>
             <h2 className="titulo_style">Nuevo Producto</h2>

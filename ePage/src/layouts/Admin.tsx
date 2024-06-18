@@ -6,6 +6,7 @@ import '../styles/admin.scss';
 import { useNavigate } from "react-router-dom";
 import { stringRoutes } from "../utilities/routes";
 import { ListAdmiCategory } from "../components/ListAdmiCategory";
+import { Loading } from "../components/Loading";
 
 export function Admin() {
   const distpatch = useAppDispatch();
@@ -17,6 +18,7 @@ export function Admin() {
   useEffect(() => {
     distpatch(readCategoriesExtraReducer({ token: state.token }));
   }, []);
+  if(state.loading) return <Loading/>;
   return (
     <div className="admin_mode">
       <div className="area_buttons">

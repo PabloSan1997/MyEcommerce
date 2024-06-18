@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { carritoExtraReducer } from "../splice/extraReducer/carritoExtraReducer";
 import { OneCarrito } from "../components/OneCarrito";
 import '../styles/carrito.scss';
+import { Loading } from "../components/Loading";
 
 export function Carritos() {
     const dispatch = useAppDispatch();
@@ -11,6 +12,7 @@ export function Carritos() {
     useEffect(() => {
         dispatch(carritoExtraReducer({ token: state.token }));
     }, []);
+    if(state.loading) return <Loading/>;
     return (
         <div className="carritos">
             <h2 className="titulo_style">Mi carrito</h2>

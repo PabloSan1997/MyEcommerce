@@ -2,6 +2,7 @@ import { FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addCategoryExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
+import { Loading } from "../components/Loading";
 
 export function AddCategory() {
     const thecategory = useAppSelector(state => state.formReducer.category);
@@ -12,6 +13,7 @@ export function AddCategory() {
         e.preventDefault();
         dispatch(addCategoryExtraReducer({ token: state.token, category: thecategory }));
     }
+    if (state.loading) return <Loading />
     return (
         <form onSubmit={submit} className="form_proyect">
             <h2 className="titulo_style">Agregar Categoria</h2>

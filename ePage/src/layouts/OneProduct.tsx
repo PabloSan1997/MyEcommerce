@@ -8,6 +8,7 @@ import { ImagenesArea } from '../components/ImagenesArea';
 import { ShoppingCartIcon, PencilIcon } from '@heroicons/react/24/solid';
 import { setCarritoExtraReducer } from '../splice/extraReducer/carritoExtraReducer';
 import { stringRoutes } from '../utilities/routes';
+import { Loading } from '../components/Loading';
 
 export function OneProduct() {
   const params = useParams();
@@ -30,6 +31,7 @@ export function OneProduct() {
 
 
   const imagenes = [oneProduct.urlImage, ...oneProduct.productDescription.imagenes];
+  if(state.loading) return <Loading/>;
   return (
     <main className="one_product_container">
       {state.isAdmin ? (
