@@ -47,6 +47,9 @@ public class CategoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editCategory(@Valid @RequestBody AddCategoryDto addCategoryDto, BindingResult result, @PathVariable Long id){
+        if(result.hasFieldErrors()){
+            validationComponent.validarion(result);
+        }
         var res = categoryService.editCategory(id, addCategoryDto);
         return ResponseEntity.ok().body(res);
     }
