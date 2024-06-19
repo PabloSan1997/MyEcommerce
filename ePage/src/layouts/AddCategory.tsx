@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FormEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addCategoryExtraReducer } from "../splice/extraReducer/productExtraReducer";
