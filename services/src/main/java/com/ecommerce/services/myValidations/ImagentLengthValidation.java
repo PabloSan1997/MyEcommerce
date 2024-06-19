@@ -11,6 +11,9 @@ public class ImagentLengthValidation implements ConstraintValidator<ImageLength,
 
     @Override
     public boolean isValid(List<String> value, ConstraintValidatorContext context) {
+        for (String url:value) {
+            if(url.length()>999) return false;
+        }
         return value.size()==3;
     }
 }

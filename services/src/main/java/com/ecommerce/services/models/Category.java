@@ -21,7 +21,7 @@ public class Category {
     private Long id;
     @Column(unique = true, nullable = false, length = 60)
     private String name;
-    @Column(nullable = false, name = "url_image")
+    @Column(nullable = false, name = "url_image", length = 1000)
     private String urlImage;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"category", "productDescription", "updateAt"})

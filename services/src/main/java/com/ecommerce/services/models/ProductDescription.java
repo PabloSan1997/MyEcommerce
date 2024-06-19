@@ -25,7 +25,7 @@ public class ProductDescription {
     @Column(nullable = false, length = 2000)
     private String specifications;
 
-    @Column(name = "imagenes_url")
+    @Column(name = "imagenes_url", length = 1000)
     private List<String> imagenes;
 
     @Column(name = "update_at")

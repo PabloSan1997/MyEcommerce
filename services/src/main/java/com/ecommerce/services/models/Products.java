@@ -27,7 +27,7 @@ public class Products {
     private Double price;
     @Column(name = "in_stock", nullable = false)
     private Boolean inStock;
-    @Column(name="url_image", nullable = false)
+    @Column(name="url_image", nullable = false, length = 1000)
     private String urlImage;
     @Column(name = "create_at")
     private Date createAt;

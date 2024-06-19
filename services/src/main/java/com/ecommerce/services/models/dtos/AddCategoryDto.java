@@ -14,5 +14,6 @@ public class AddCategoryDto {
     @NotBlank
     private String name;
     @NotBlank
+    @Size(max = 1000)
     private String urlImage;
 }

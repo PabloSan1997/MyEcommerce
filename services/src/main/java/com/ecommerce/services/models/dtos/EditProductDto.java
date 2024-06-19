@@ -20,6 +20,7 @@ public class EditProductDto {
     @NotNull
     private Double price;
     @NotBlank
+    @Size(max = 1000)
     private String urlImage;
     @NotBlank
     @Size(min = 2, max=500)

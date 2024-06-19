@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ImagentLengthValidation.class)
 public @interface ImageLength {
-    String message() default "El arreglo debe tener tres elementos";
+    String message() default "Las imagenes tienen que ser tres de máximo 1000 caracteres";
 
     Class<?>[] groups() default { };
 
