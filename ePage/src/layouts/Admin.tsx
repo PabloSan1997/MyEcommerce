@@ -18,14 +18,17 @@ export function Admin() {
   useEffect(() => {
     distpatch(readCategoriesExtraReducer({ token: state.token }));
   }, []);
-  if(state.loading) return <Loading/>;
+
+  if (state.loading) return <Loading />;
   return (
     <div className="admin_mode">
       <div className="area_buttons">
-        <button
-          className="admin_button"
-          onClick={() => navigate(stringRoutes.adminAddProduct)}
-        >Agregar nuevo producto</button>
+        {state.categories.length > 0 ? (
+          <button
+            className="admin_button"
+            onClick={() => navigate(stringRoutes.adminAddProduct)}
+          >Agregar nuevo producto</button>
+        ) : null}
         <button
           className="admin_button"
           onClick={() => navigate(stringRoutes.addCategory)}
