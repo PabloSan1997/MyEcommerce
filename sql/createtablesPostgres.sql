@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS public.categories
 (
     id serial,
     name character varying(60) COLLATE pg_catalog."default" NOT NULL,
-    url_image character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    url_image character varying(1000) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT categories_pkey PRIMARY KEY (id),
     CONSTRAINT categories_name_key UNIQUE (name)
 );
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS public.products
     id_category bigint,
     update_at timestamp(6) without time zone,
     name character varying(60) COLLATE pg_catalog."default" NOT NULL,
-    url_image character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    url_image character varying(1000) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT products_pkey PRIMARY KEY (id),
     CONSTRAINT fkip7b0y8ja7fsm5wl7mhmseh5n FOREIGN KEY (id_category)
         REFERENCES public.categories (id) MATCH SIMPLE
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS public.product_description
     update_at timestamp(6) without time zone,
     description character varying(500) COLLATE pg_catalog."default" NOT NULL,
     specifications character varying(2000) COLLATE pg_catalog."default" NOT NULL,
-    imagenes_url character varying(255)[] COLLATE pg_catalog."default",
+    imagenes_url character varying(1000)[] COLLATE pg_catalog."default",
     CONSTRAINT product_description_pkey PRIMARY KEY (id),
     CONSTRAINT product_description_id_product_key UNIQUE (id_product),
     CONSTRAINT fknucpok4hnrc6nbd4i23x6brj1 FOREIGN KEY (id_product)
