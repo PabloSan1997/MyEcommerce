@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { addNewProdcuctExtraRedeucer, readCategoriesExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
 import { Loading } from "../components/Loading";
+import { commersActions } from "../splice/commerSlice";
 
 export function AddProduct() {
     const theproduct = useAppSelector(state => state.formReducer.product);
@@ -28,6 +29,7 @@ export function AddProduct() {
     }
     useEffect(() => {
         dispatch(readCategoriesExtraReducer({ token }));
+        dispatch(commersActions.borrarMessage());
     }, []);
    
     useEffect(() => {
@@ -109,6 +111,7 @@ export function AddProduct() {
             <div className="area_buttons">
                 <button type="submit">Agregar</button>
             </div>
+            {state.message?<p className="error">{state.message}</p>:null}
         </form>
     );
 }

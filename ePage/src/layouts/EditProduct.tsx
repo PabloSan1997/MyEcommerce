@@ -142,6 +142,7 @@ export function EditProduct() {
                 <button type="submit">Aceptar</button>
                 <button type="button" onClick={deleteProduct}>Eliminar Producto</button>
             </div>
+            {state.message?<p className="error">{state.message}</p>:null}
         </form>
     );
 }

@@ -1,14 +1,17 @@
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addCategoryExtraReducer } from "../splice/extraReducer/productExtraReducer";
 import { formActions } from "../splice/formsSlice";
 import { Loading } from "../components/Loading";
+import { commersActions } from "../splice/commerSlice";
 
 export function AddCategory() {
     const thecategory = useAppSelector(state => state.formReducer.category);
     const state = useAppSelector(state => state.commerseReducer);
     const dispatch = useAppDispatch();
-
+    useEffect(()=>{
+        dispatch(commersActions.borrarMessage());
+    },[]);
     const submit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(addCategoryExtraReducer({ token: state.token, category: thecategory }));
@@ -34,6 +37,7 @@ export function AddCategory() {
             <div className="area_buttons">
                 <button type="submit">Agregar</button>
             </div>
+            {state.message?<p className="error">{state.message}</p>:null}
         </form>
     );
 }

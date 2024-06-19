@@ -121,13 +121,15 @@ const commereSlice = createSlice({
             state.categories = action.payload;
             window.location.hash = '/home';
             state.loading = false;
+            state.message = '';
         });
         builder.addCase(editCategoryExtraReducer.pending, (state)=>{
             state.loading = true;
         });
-        builder.addCase(editCategoryExtraReducer.rejected, (state)=>{
+        builder.addCase(editCategoryExtraReducer.rejected, (state, {error})=>{
             state.loading = false;
-        });
+            state.message = error.message as string
+;        });
 
         //-----Products-----
         builder.addCase(readProductsExtraReducer.fulfilled, (state, action: PayloadAction<ProductResponse[]>) => {
@@ -149,23 +151,27 @@ const commereSlice = createSlice({
         builder.addCase(editProductExtraReducer.fulfilled, (state) => {
             window.location.hash = '/home';
             state.loading = false;
+            state.message='';
         });
         builder.addCase(editProductExtraReducer.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(editProductExtraReducer.rejected, (state) => {
+        builder.addCase(editProductExtraReducer.rejected, (state, action) => {
             state.loading = false;
+            state.message = action.error.message as string;
         });
 
         builder.addCase(addNewProdcuctExtraRedeucer.fulfilled, (state) => {
             window.location.hash = '/home';
             state.loading = false;
+            state.message = '';
         });
         builder.addCase(addNewProdcuctExtraRedeucer.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(addNewProdcuctExtraRedeucer.rejected, (state) => {
+        builder.addCase(addNewProdcuctExtraRedeucer.rejected, (state, action) => {
             state.loading = false;
+            state.message = action.error.message as string;
         });
 
         builder.addCase(deleteOneProductExtraReducer.rejected,(state)=>{
