@@ -12,6 +12,7 @@ export function AddCategory() {
     const dispatch = useAppDispatch();
     useEffect(()=>{
         dispatch(commersActions.borrarMessage());
+        dispatch(formActions.borrar());
     },[]);
     const submit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
