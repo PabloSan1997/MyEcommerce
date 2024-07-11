@@ -9,4 +9,5 @@ public interface UserService {
     UserEntity register(RegisterDto registerDto);
     UserInfoDto findUser(String email);
     ViewAdminDto viewAdmin(String username);
+    void generateRoles();
 }

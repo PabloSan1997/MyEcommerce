@@ -42,12 +42,14 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/user/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/user/generateRoles").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/user/carrito").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/user/carrito/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.GET,
                                 "/api/user/carrito",
                                 "/api/user/info", "/api/product",
                                 "/api/product/{id}", "/api/category",
+                                "/api/product/count", "/api/category/count",
                                 "/api/category/name",
                                 "/api/user/view").hasRole("USER")
                         .requestMatchers(HttpMethod.PATCH, "/api/user/carrito/{id}").hasRole("USER")

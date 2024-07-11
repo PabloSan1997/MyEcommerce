@@ -6,6 +6,7 @@ import com.ecommerce.services.services.ProductService;
 import com.ecommerce.services.utils.ValidationComponent;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -20,11 +21,15 @@ public class ProductController {
     private ValidationComponent validationComponent;
 
     @GetMapping("")
-    public ResponseEntity<?> findProducts() {
-        var res = productService.findAll();
+    public ResponseEntity<?> findProducts(Pageable pageable) {
+        var res = productService.findAll(pageable);
         return ResponseEntity.ok().body(res);
     }
+    @GetMapping("/count")
+    public ResponseEntity<?> countProduct(){
 
+        return ResponseEntity.ok(productService.countProducts());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         var res = productService.findById(id);

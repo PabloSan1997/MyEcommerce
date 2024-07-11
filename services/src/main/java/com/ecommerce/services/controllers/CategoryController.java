@@ -5,6 +5,7 @@ import com.ecommerce.services.services.CategoryService;
 import com.ecommerce.services.utils.ValidationComponent;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -25,9 +26,13 @@ public class CategoryController {
         return ResponseEntity.ok().body(res);
     }
     @GetMapping("/name")
-    public ResponseEntity<?> findByName(@RequestParam String category){
-        var res = categoryService.findByName(category);
+    public ResponseEntity<?> findByName(@RequestParam String category, Pageable pageable){
+        var res = categoryService.findByName(category, pageable);
         return ResponseEntity.ok().body(res);
+    }
+    @GetMapping("/count")
+    public ResponseEntity<?> count(@RequestParam String name){
+        return ResponseEntity.ok().body(categoryService.countProductByCategory(name));
     }
 
     @PostMapping("")

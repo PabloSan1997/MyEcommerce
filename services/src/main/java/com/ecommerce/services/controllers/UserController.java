@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -71,5 +74,13 @@ public class UserController {
     public ResponseEntity<?> viewAdmin(@RequestAttribute String username){
         var res = userService.viewAdmin(username);
         return ResponseEntity.ok().body(res);
+    }
+
+    @GetMapping("/generateRoles")
+    public ResponseEntity<?> generateRole(){
+        Map<String, String> map = new HashMap<>();
+        userService.generateRoles();
+        map.put("message", "Roles actualizados");
+        return ResponseEntity.ok(map);
     }
 }

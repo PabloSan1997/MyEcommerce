@@ -8,11 +8,13 @@ import com.ecommerce.services.models.Products;
 import com.ecommerce.services.models.dtos.AddProductDto;
 import com.ecommerce.services.models.dtos.EditProductDto;
 import com.ecommerce.services.models.dtos.ShowProductDto;
+import com.ecommerce.services.models.dtos.TotalProductsDto;
 import com.ecommerce.services.repositories.CategoryRepository;
 import com.ecommerce.services.repositories.ProductDescriptionRepository;
 import com.ecommerce.services.repositories.ProductRepository;
 import com.ecommerce.services.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +34,8 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     @Transactional
-    public List<ShowProductDto> findAll() {
-        return productRepository.findAllProducts();
+    public List<ShowProductDto> findAll(Pageable pageable) {
+        return productRepository.findAllProducts(pageable);
     }
 
     @Override
@@ -84,6 +86,13 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     @Transactional
+    public TotalProductsDto countProducts() {
+        Long count = productRepository.countProducts();
+        return TotalProductsDto.builder().totalProducts(count).build();
+    }
+
+    @Override
+    @Transactional
     public Products editProduct(Long id, EditProductDto editProductDto) {
         String sCategory = editProductDto.getCategory();
 
@@ -112,7 +121,6 @@ public class ProductServiceImp implements ProductService {
         Double price = editProductDto.getPrice();
         Boolean inStock = editProductDto.getInStock();
         String urlImage = editProductDto.getUrlImage();
-
 
 
         product.setName(name);

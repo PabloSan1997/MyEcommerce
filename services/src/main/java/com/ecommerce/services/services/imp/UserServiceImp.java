@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +64,21 @@ public class UserServiceImp implements UserService {
         List<RoleEntity> role = user.getRoles();
         Optional<RoleEntity> theRole = role.stream().filter(r -> r.getName().equals("ADMIN")).findFirst();
         return ViewAdminDto.builder().isAdmin(theRole.isPresent()).build();
+    }
+
+    @Override
+    @Transactional
+    public void generateRoles() {
+        List<RoleEntity> roles = new ArrayList<>();
+        if(roleRepository.findByName("USER").isEmpty()){
+            RoleEntity rol = RoleEntity.builder().name("USER").build();
+            roles.add(rol);
+        }
+        if(roleRepository.findByName("ADMIN").isEmpty()){
+            RoleEntity rol = RoleEntity.builder().name("ADMIN").build();
+            roles.add(rol);
+        }
+        if(roles.size()>0)
+            roleRepository.saveAll(roles);
     }
 }

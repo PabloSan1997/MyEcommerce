@@ -6,10 +6,12 @@ import com.ecommerce.services.models.Category;
 import com.ecommerce.services.models.Products;
 import com.ecommerce.services.models.dtos.AddCategoryDto;
 import com.ecommerce.services.models.dtos.ShowCategoriesDto;
+import com.ecommerce.services.models.dtos.TotalProductsDto;
 import com.ecommerce.services.repositories.CategoryRepository;
 import com.ecommerce.services.repositories.ProductRepository;
 import com.ecommerce.services.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,12 +46,12 @@ public class CategoryServiceImp implements CategoryService {
 
     @Override
     @Transactional
-    public Category findByName(String name) {
+    public Category findByName(String name, Pageable pageable) {
         Optional<Category> optionalCategory = categoryRepository.findByName(name);
         Category category = optionalCategory.orElseThrow(() -> {
             throw new MyNotFoundException("No se encontró categoría con ese nombre");
         });
-        List<Products> products = productRepository.findByCategory(name);
+        List<Products> products = productRepository.findByCategory(name, pageable);
         return Category.builder()
                 .id(category.getId())
                 .name(category.getName())
@@ -79,5 +81,12 @@ public class CategoryServiceImp implements CategoryService {
         category.setName(name);
         Category cate = categoryRepository.save(category);
         return categoryRepository.findByNameShow(cate.getName()).orElseThrow();
+    }
+
+    @Override
+    @Transactional
+    public TotalProductsDto countProductByCategory(String category) {
+        Long count = productRepository.countProductByCategory(category);
+        return TotalProductsDto.builder().totalProducts(count).build();
     }
 }
