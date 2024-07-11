@@ -42,10 +42,18 @@ function Viewtoken({ children }: Children) {
 
 const Routes = () => useRoutes([
     {
-        path: stringRoutes.home,
+        path: stringRoutes.home+'/:page',
         element: (
             <Viewtoken>
                 <Home />
+            </Viewtoken>
+        )
+    },
+    {
+        path: stringRoutes.home,
+        element: (
+            <Viewtoken>
+                <Navigate to={stringRoutes.home+'/0'}/>
             </Viewtoken>
         )
     },
@@ -76,7 +84,7 @@ const Routes = () => useRoutes([
         )
     },
     {
-        path: stringRoutes.category,
+        path: stringRoutes.category+"/:name/:page",
         element: (
             <Viewtoken>
                 <OneCategory />

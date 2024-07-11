@@ -47,7 +47,7 @@ export function OneProduct() {
           <span className='price'>${oneProduct.price}</span>
           <span 
             className='category'
-            onClick={() => navigate(`${stringRoutes.category}?name=${oneProduct.category.name}`)}
+            onClick={() => navigate(`${stringRoutes.category}/${oneProduct.category.name}/0`)}
           >{oneProduct.category.name}</span>
           <p className="description">{oneProduct.productDescription.description}</p>
           <div className="buttons_area">

@@ -1,3 +1,4 @@
+import { showTotalProducts } from "../utilities/generateArray";
 import { apiConfig } from "./apiConfig";
 
 
@@ -13,8 +14,8 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
-    async readOneCategory(token:string, category:string):Promise<OneCategoryResponse>{
-        const ft = await fetch(`${apiConfig.url}/api/category/name?category=${category}`, {
+    async readOneCategory(token:string, category:string, page:number=0, size=showTotalProducts.total):Promise<OneCategoryResponse>{
+        const ft = await fetch(`${apiConfig.url}/api/category/name?category=${category}&page=${page}&size=${size}`, {
             method:'GET',
             headers:{
                 ...apiConfig.contentAuth(token)
@@ -55,8 +56,8 @@ export class ProductApi{
         if(ft.ok) return this.readCategories(token);
         throw await ft.json();
     }
-    async readProducts(token:string):Promise<ProductResponse[]>{
-        const ft = await fetch(`${apiConfig.url}/api/product`, {
+    async readProducts(token:string, page:number, size=showTotalProducts.total):Promise<ProductResponse[]>{
+        const ft = await fetch(`${apiConfig.url}/api/product?page=${page&&typeof page =='number'?page:0}&size=${size}`, {
             method:'GET',
             headers:{
                 ...apiConfig.contentAuth(token)
@@ -67,6 +68,16 @@ export class ProductApi{
     }
     async readOneProduct(token:string, id:number):Promise<OneProduct>{
         const ft = await fetch(`${apiConfig.url}/api/product/${id}`, {
+            method:'GET',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(ft.ok) return ft.json();
+        throw await ft.json();
+    }
+    async countProducts(token:string):Promise<TotalProducts>{
+        const ft = await fetch(`${apiConfig.url}/api/product/count`, {
             method:'GET',
             headers:{
                 ...apiConfig.contentAuth(token)

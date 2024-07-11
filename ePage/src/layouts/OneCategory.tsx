@@ -1,23 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { readOneCategoryExtraReducer } from '../splice/extraReducer/productExtraReducer';
 import { ProductOptionCategory } from '../components/ProductOptionCategory';
 import '../styles/categoryOne.scss';
 import { CategoryPortada } from '../components/CategoryPortada';
 import { Loading } from '../components/Loading';
+import { MenuIndex } from '../components/MenuIndex';
+import { stringRoutes } from '../utilities/routes';
 
 export function OneCategory() {
   const dispatch = useAppDispatch();
   const state = useAppSelector(state => state.commerseReducer);
-  const [search] = useSearchParams();
-  const name = search.get('name');
+  const search = useParams();
+  const name = search.name;
+  const page = Number(search.page);
   useEffect(() => {
     if (name) {
-      dispatch(readOneCategoryExtraReducer({ token: state.token, name }));
+      dispatch(readOneCategoryExtraReducer({ token: state.token, name, page }));
     }
-  }, []);
+  }, [page]);
   const category = state.oneCategory;
   if(state.loading) return <Loading/>;
   return (
@@ -28,6 +31,7 @@ export function OneCategory() {
           <ProductOptionCategory key={p.id} {...p}/>
         ))}
       </div>
+      <MenuIndex baseUrl={`${stringRoutes.category}/${name}`}/>
     </div>
   );
 }

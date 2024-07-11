@@ -19,7 +19,7 @@ export function CategoryList() {
            <ul>
            {
                 state.categories.map(c => (
-                    <li key={c.id}><Link key={c.id} to={`/category?name=${c.name}`}>{c.name}</Link></li>
+                    <li key={c.id}><Link key={c.id} to={`/category/${c.name}/0`}>{c.name}</Link></li>
                 ))
             }
            </ul>

@@ -1,5 +1,9 @@
 /// <reference types="vite/client" />
 
+interface TotalProducts{
+    totalProducts:number;
+}
+
 type ViewAdmin = {
     isAdmin: boolean
 }
@@ -17,7 +21,9 @@ type InitialSateHome = {
     message: string,
     isAdmin: boolean,
     carrito:CarritoRespnse[],
-    loading:boolean
+    loading:boolean,
+    totalProducts:number;
+    totalProductsCategories:number;
 }
 
 type InitialStateFomrs = {

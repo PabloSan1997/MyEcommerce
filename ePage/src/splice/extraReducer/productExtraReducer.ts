@@ -30,9 +30,9 @@ export const deleteCategoryExtraReducer = createAsyncThunk(
 
 export const readProductsExtraReducer = createAsyncThunk(
     'extraReducer/readProducts',
-    async ({ token }: { token: string }) => {
+    async ({ token, page }: { token: string, page:number }) => {
         try {
-            return readApi.readProducts(token);
+            return readApi.readProducts(token, page);
         } catch (error) {
             const err = error as ErrorDto;
             throw err;
@@ -42,9 +42,9 @@ export const readProductsExtraReducer = createAsyncThunk(
 
 export const readOneCategoryExtraReducer = createAsyncThunk(
     'extraReducer/readOneCategory',
-    async ({ token, name }: { token: string, name: string }) => {
+    async ({ token, name, page }: { token: string, name: string, page:number }) => {
         try {
-            return readApi.readOneCategory(token, name);
+            return readApi.readOneCategory(token, name, page);
         } catch (error) {
             const err = error as ErrorDto;
             throw err;
@@ -125,3 +125,14 @@ export const deleteOneProductExtraReducer = createAsyncThunk(
     }
 );
 
+export const countProductExtraReducer = createAsyncThunk(
+    'extraReducer/countProducts',
+    async({token}:{token:string})=>{
+        try {
+            return readApi.countProducts(token);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);

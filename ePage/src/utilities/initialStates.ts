@@ -42,7 +42,9 @@ export const initialState:InitialSateHome = {
     message: '',
     isAdmin: false,
     carrito: [],
-    loading: false
+    loading: false,
+    totalProducts: 0,
+    totalProductsCategories: 0
 }
 
 
