@@ -12,6 +12,7 @@ import com.ecommerce.services.repositories.RoleRepository;
 import com.ecommerce.services.repositories.UserRepository;
 import com.ecommerce.services.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,13 @@ public class UserServiceImp implements UserService {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Value("${admin.email}")
+    private String adminUsername;
+    @Value("${admin.password}")
+    private String adminPassword;
+    @Value("${admin.nickname}")
+    private String adminNickname;
 
     @Override
     @Transactional
@@ -70,6 +78,7 @@ public class UserServiceImp implements UserService {
     @Transactional
     public void generateRoles() {
         List<RoleEntity> roles = new ArrayList<>();
+
         if(roleRepository.findByName("USER").isEmpty()){
             RoleEntity rol = RoleEntity.builder().name("USER").build();
             roles.add(rol);
@@ -78,7 +87,18 @@ public class UserServiceImp implements UserService {
             RoleEntity rol = RoleEntity.builder().name("ADMIN").build();
             roles.add(rol);
         }
+
         if(roles.size()>0)
             roleRepository.saveAll(roles);
+
+        UserEntity admin = register(
+                RegisterDto.builder()
+                        .email(adminUsername)
+                        .name(adminNickname)
+                        .password(adminPassword).build()
+        );
+        RoleEntity adminRole = roleRepository.findByName("ADMIN").get();
+        admin.addRole(adminRole);
+        userRepository.save(admin);
     }
 }
