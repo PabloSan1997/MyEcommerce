@@ -25,20 +25,21 @@ export function AddProduct() {
             imagenes: [theproduct.image1, theproduct.image2, theproduct.image3],
             category: theproduct.category
         }
-        dispatch(addNewProdcuctExtraRedeucer({ token, data }));
+        dispatch(addNewProdcuctExtraRedeucer({ token, data }))
+            .then(() => { dispatch(formActions.borrar()) });
     }
     useEffect(() => {
-        dispatch(readCategoriesExtraReducer({ token }));
+        dispatch(readCategoriesExtraReducer({ token }))
         dispatch(commersActions.borrarMessage());
     }, []);
-   
+
     useEffect(() => {
-        if (categorias.length>0) {
+        if (categorias.length > 0) {
             dispatch(formActions.escribirProduct({ ...theproduct, category: categorias[0] }));
         }
     }, [categorias.length]);
 
-    if(state.loading) return <Loading/>
+    if (state.loading) return <Loading />
     return (
         <form className="add_proyect form_proyect" onSubmit={subir}>
             <h2 className="titulo_style">Nuevo Producto</h2>
@@ -111,7 +112,7 @@ export function AddProduct() {
             <div className="area_buttons">
                 <button type="submit">Agregar</button>
             </div>
-            {state.message?<p className="error">{state.message}</p>:null}
+            {state.message ? <p className="error">{state.message}</p> : null}
         </form>
     );
 }

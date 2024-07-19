@@ -21,7 +21,7 @@ export function Home() {
           <ProductsList />
         </section>
       </div>
-      <MenuIndex baseUrl={stringRoutes.home}/>
+      <MenuIndex baseUrl={stringRoutes.home} categoryName=""/>
     </>
   );
 }

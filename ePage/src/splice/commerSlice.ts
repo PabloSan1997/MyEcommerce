@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCategory, initialOneProduct, initialState } from "../utilities/initialStates";
 import { loginExtraReducer, readInfoUserExtraReducer, registerExtraReducer, viewAdmninExtraReducer } from "./extraReducer/userExtraReducers";
 import { storageLogin } from "../utilities/storage";
-import { addCategoryExtraReducer, addNewProdcuctExtraRedeucer, countProductExtraReducer, deleteCategoryExtraReducer, deleteOneProductExtraReducer, editCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
+import { addCategoryExtraReducer, addNewProdcuctExtraRedeucer, countProductCategoryExtraReducer, countProductExtraReducer, deleteCategoryExtraReducer, deleteOneProductExtraReducer, editCategoryExtraReducer, editProductExtraReducer, readCategoriesExtraReducer, readOneCategoryExtraReducer, readOneProductExtraReducer, readProductsExtraReducer } from "./extraReducer/productExtraReducer";
 import { carritoExtraReducer, deleteCarritoExtraReducer, editCarritoExtraReducer, setCarritoExtraReducer } from "./extraReducer/carritoExtraReducer";
 
 
@@ -181,6 +181,10 @@ const commereSlice = createSlice({
         builder.addCase(countProductExtraReducer.fulfilled, (state, action)=>{
             state.totalProducts = action.payload.totalProducts;
         });
+
+        builder.addCase(countProductCategoryExtraReducer.fulfilled, (state, action)=>{
+            state.totalProducts = action.payload.totalProducts;
+        })
 
         //-----Carrito------
         builder.addCase(carritoExtraReducer.fulfilled, (state, acion) => {

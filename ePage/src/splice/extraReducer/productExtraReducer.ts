@@ -136,3 +136,17 @@ export const countProductExtraReducer = createAsyncThunk(
         }
     }
 );
+
+
+export const countProductCategoryExtraReducer = createAsyncThunk(
+    'extraReducer/countProductsCategory',
+    async({token, name}:{token:string, name:string})=>{
+        try {
+            return readApi.countProductsCategory(token, name);
+        } catch (error) {
+            const err = error as ErrorDto;
+            throw err;
+        }
+    }
+);
+

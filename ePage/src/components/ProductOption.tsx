@@ -10,7 +10,7 @@ export function ProductOption({ name, inStock, price, category, urlImage, create
       <img src={urlImage} alt={name} onClick={()=>navigate(`${stringRoutes.product}/${id}`)}/>
       <div className="area_product_info">
         <h3 onClick={()=>navigate(`${stringRoutes.product}/${id}`)}>{name}</h3>
-        <span className="category" onClick={()=>navigate(`/category?name=${category}`)}>{category}</span>
+        <span className="category" onClick={()=>navigate(`/category/${category}/0`)}>{category}</span>
         <span className="fecha">{converTime(createAt)}</span>
       </div>
     </div>

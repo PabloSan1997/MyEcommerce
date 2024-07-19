@@ -86,6 +86,16 @@ export class ProductApi{
         if(ft.ok) return ft.json();
         throw await ft.json();
     }
+    async countProductsCategory(token:string, name:string):Promise<TotalProducts>{
+        const ft = await fetch(`${apiConfig.url}/api/category/count?name=${name}`, {
+            method:'GET',
+            headers:{
+                ...apiConfig.contentAuth(token)
+            }
+        });
+        if(ft.ok) return ft.json();
+        throw await ft.json();
+    }
     async addProduct(token:string, data:AddProduct):Promise<OneProduct>{
         const ft = await fetch(`${apiConfig.url}/api/product`,{
             method:'POST',

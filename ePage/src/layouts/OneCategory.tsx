@@ -31,7 +31,7 @@ export function OneCategory() {
           <ProductOptionCategory key={p.id} {...p}/>
         ))}
       </div>
-      <MenuIndex baseUrl={`${stringRoutes.category}/${name}`}/>
+      <MenuIndex baseUrl={`${stringRoutes.category}/${name}`} categoryName={name?name:''}/>
     </div>
   );
 }

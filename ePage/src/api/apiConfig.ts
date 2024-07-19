@@ -2,7 +2,7 @@
 
 
 export const apiConfig = {
-    url:import.meta.env.DEV?'http://localhost:3001':'https://miecommersespringjava.onrender.com',
+    url:import.meta.env.DEV?'http://localhost:3001':'https://servicio-ecommerce.onrender.com',
     contentHeader:{
         'Content-Type':'application/json'
     },

@@ -5,7 +5,7 @@
     padding: 0 1rem;
     box-sizing: border-box;
     display: grid;
-    gap: 1rem;
+    gap: 1.4rem;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
 
     .product_option {
@@ -13,6 +13,7 @@
         border-radius: 0.5rem;
         position: relative;
         overflow: hidden;
+        height: fit-content;
         .price {
             position: absolute;
             background: rgba(0, 0, 0, 0.514);
