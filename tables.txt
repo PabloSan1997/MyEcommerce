@@ -59,3 +59,5 @@ Ref: Products.id > Carritos.id_product
 Ref: Products.id - Product_Descriptions.id_product
 Ref: User.id <> user_role.id_user
 Ref: Roles.id <> user_role.id_roles
+
+// https://dbdiagram.io/d/64fba9da02bd1c4a5e3d3b1b
