@@ -269,7 +269,7 @@ PUT /api/category/{id}
 }
 ```
 
-#### Borrar Categoria
+### Borrar Categoria
 
 Borra Categoria existente junto a todos sus productos relacionados
 
