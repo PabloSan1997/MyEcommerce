@@ -502,7 +502,7 @@ Elimina un producto existente
 #### Ruta
 
 ```http
-GET /api/product/{id}
+DELETE /api/product/{id}
 ```
 
 #### Role
